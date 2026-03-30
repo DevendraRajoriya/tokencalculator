@@ -1,4 +1,4 @@
-// Sitemap.xml for SEO — includes all pages
+// Sitemap.xml for SEO — all pages
 
 export async function GET() {
   const baseUrl = "https://tokencalculator.vercel.app";
@@ -12,6 +12,9 @@ export async function GET() {
     { url: "/llama-token-calculator", changefreq: "monthly", priority: "0.8" },
     { url: "/llm-pricing-comparison", changefreq: "weekly", priority: "0.9" },
     { url: "/api/docs", changefreq: "monthly", priority: "0.7" },
+    { url: "/about", changefreq: "monthly", priority: "0.5" },
+    { url: "/blog", changefreq: "weekly", priority: "0.8" },
+    { url: "/blog/what-is-a-token-in-ai", changefreq: "monthly", priority: "0.8" },
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
