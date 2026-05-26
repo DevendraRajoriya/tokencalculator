@@ -1,17 +1,23 @@
-import ModelCalculator from "@/components/ModelCalculator";
+import OpenAITabs from "@/components/OpenAITabs";
 import FAQ from "@/components/FAQ";
 
 export const metadata = {
-  title: "GPT-4o Token Calculator — Free OpenAI Token Counter & Cost Estimator",
+  title: "ChatGPT Token Calculator — Free OpenAI Token Counter & Cost Estimator",
   description:
-    "Free GPT-4o token calculator. Count tokens, estimate API costs, and visualize tokenization for OpenAI GPT-4o in real time. Uses the official tiktoken o200k_base encoding.",
-  keywords: ["GPT token calculator", "GPT-4o token counter", "OpenAI token calculator", "GPT-4o cost calculator"],
+    "Free ChatGPT token calculator with built-in tokenizer. Count tokens, estimate API costs, and visualize tokenization for GPT-5.4, GPT-4o, o3, and more — in real time. No signup required.",
+  keywords: ["ChatGPT token calculator", "OpenAI token calculator", "GPT tokenizer", "GPT-4o token calculator", "OpenAI API cost", "tokenizer"],
   openGraph: {
-    title: "GPT-4o Token Calculator — Free OpenAI Token Counter",
-    description: "Count GPT-4o tokens, estimate API costs, and visualize tokenization in real time.",
+    title: "ChatGPT Token Calculator — Free OpenAI Token Counter",
+    description: "Count ChatGPT tokens, estimate API costs, and visualize tokenization in real time.",
   },
   alternates: {
     canonical: "/gpt-token-calculator",
+    languages: {
+      "x-default": "/gpt-token-calculator",
+      en: "/gpt-token-calculator",
+      de: "/de/gpt-token-calculator",
+      fr: "/fr/gpt-token-calculator",
+    },
   },
 };
 
@@ -19,11 +25,11 @@ export default function GPTTokenCalculator() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "GPT-4o Token Calculator",
+    name: "ChatGPT Token Calculator",
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free real-time token calculator specifically for OpenAI GPT-4o. Uses the official o200k_base tokenizer.",
+    description: "Free real-time ChatGPT token calculator with tokenizer for OpenAI models including GPT-5.4, GPT-4o, o3, and GPT-4.1.",
   };
 
   const breadcrumbSchema = {
@@ -31,7 +37,7 @@ export default function GPTTokenCalculator() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-      { "@type": "ListItem", position: 2, name: "GPT-4o Token Calculator", item: "/gpt-token-calculator" },
+      { "@type": "ListItem", position: 2, name: "ChatGPT Token Calculator", item: "/gpt-token-calculator" },
     ],
   };
 
@@ -39,46 +45,108 @@ export default function GPTTokenCalculator() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <div style={{ zoom: 0.8 }}>
 
-      <section className="hero" style={{ paddingBottom: "1.5rem" }}>
-        <nav style={{ fontSize: "0.8125rem", color: "var(--text-muted)", marginBottom: "1rem" }}>
-          <a href="/" style={{ color: "var(--text-tertiary)", textDecoration: "none" }}>Home</a>
-          <span style={{ margin: "0 0.5rem" }}>/</span>
-          <span style={{ color: "var(--text-primary)" }}>GPT-4o Token Calculator</span>
-        </nav>
-        <h1 className="hero__title" style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}>
-          GPT-4o <span>Token Calculator</span>
+      <section className="hero" style={{ padding: "16px 24px 0" }}>
+        <h1 className="hero__title font-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 3.25rem)", whiteSpace: "nowrap", lineHeight: 1.1, marginBottom: "0.5rem", fontWeight: 800 }}>
+          ChatGPT Token <span className="text-accent">Calculator</span>
         </h1>
-        <p className="hero__subtitle">
-          Count tokens for OpenAI GPT-4o using the official o200k_base encoder.
-          Real-time counting, cost estimation, and token visualization — 100% free.
+        <p className="hero__subtitle" style={{ fontSize: "1.125rem", maxWidth: "600px", margin: "0 auto 0.5rem", color: "var(--text-secondary)" }}>
+          Highly accurate <strong>OpenAI tokenizer</strong> for real-time counting, cost estimation, and token visualization.
         </p>
       </section>
 
-      <ModelCalculator
-        modelId="gpt-4o"
-        relatedModelIds={["gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo", "claude-3.5-sonnet", "deepseek-v3"]}
+      <OpenAITabs
+        exactNumbers={true}
+        compactVisualizer={true}
+        showAllModels={true}
+        defaultText="The quick brown fox jumps over the lazy dog. 🦊"
       />
 
-      {/* SEO Content */}
-      <section className="container container--narrow" style={{ marginBottom: "2rem", padding: "0 1.5rem" }}>
-        <article style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: "0.75rem" }}>
-            How GPT-4o Tokenization Works
-          </h2>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: "0.75rem" }}>
-            GPT-4o uses OpenAI&apos;s <strong>o200k_base</strong> encoding — a vocabulary of 200,000 tokens, double the size of the cl100k_base encoding used by GPT-4 and GPT-3.5. This larger vocabulary means GPT-4o typically produces <strong>fewer tokens for the same text</strong>, making it more cost-efficient per character.
-          </p>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: "0.75rem" }}>
-            At <strong>$2.50 per 1M input tokens</strong> and <strong>$10.00 per 1M output tokens</strong>, GPT-4o sits in the mid-range for pricing. For budget-conscious applications, GPT-4o Mini offers the same quality for simple tasks at just $0.15/$0.60 per 1M tokens — a 94% cost reduction.
-          </p>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>
-            GPT-4o supports a <strong>128K context window</strong> (approximately 96,000 words), making it suitable for processing long documents, code files, and multi-turn conversations without chunking.
-          </p>
-        </article>
+      <section className="container" style={{ marginTop: "2rem", marginBottom: "3rem" }}>
+        <div style={{
+          background: "var(--bg-secondary)",
+          border: "1px solid var(--border-default)",
+          borderRadius: "var(--radius-xl)",
+          overflow: "hidden",
+          boxShadow: "var(--shadow-sm)",
+        }}>
+          {/* Header */}
+          <div style={{
+            padding: "1.25rem 1.5rem",
+            borderBottom: "1px solid var(--border-subtle)",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.75rem",
+          }}>
+            <span style={{ fontSize: "1.125rem" }}>⚡</span>
+            <h2 style={{
+              fontSize: "0.9375rem",
+              fontWeight: 700,
+              color: "var(--text-primary)",
+              margin: 0,
+              fontFamily: "var(--font-sans)",
+            }}>
+              How OpenAI Tokenization Works
+            </h2>
+          </div>
+
+          {/* Stat Pills */}
+          <div style={{
+            display: "flex",
+            gap: "0",
+            borderBottom: "1px solid var(--border-subtle)",
+            flexWrap: "wrap",
+          }}>
+            {[
+              { label: "Encoding", value: "o200k", note: "GPT-4o & GPT-5.x" },
+              { label: "GPT-5.4 Input", value: "$2.50", note: "per 1M tokens" },
+              { label: "Context Window", value: "272K", note: "GPT-5.4 & GPT-4.1" },
+            ].map((stat, i, arr) => (
+              <div key={i} style={{
+                flex: "1 1 160px",
+                padding: "1rem 1.5rem",
+                borderRight: i < arr.length - 1 ? "1px solid var(--border-subtle)" : "none",
+                display: "flex",
+                flexDirection: "column",
+                gap: "2px",
+              }}>
+                <div style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "1.25rem",
+                  fontWeight: 700,
+                  color: "var(--accent)",
+                  letterSpacing: "-0.02em",
+                }}>
+                  {stat.value}
+                </div>
+                <div style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--text-primary)" }}>
+                  {stat.label}
+                </div>
+                <div style={{ fontSize: "0.6875rem", color: "var(--text-tertiary)" }}>
+                  {stat.note}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Body */}
+          <div style={{ padding: "1.25rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.75, margin: 0 }}>
+              OpenAI models use the <strong style={{ color: "var(--text-primary)" }}>tiktoken</strong> library — specifically <strong style={{ color: "var(--text-primary)" }}>o200k_base</strong> for GPT-5.x, GPT-4o, and o-series models, and <strong style={{ color: "var(--text-primary)" }}>cl100k_base</strong> for legacy GPT-4 and GPT-3.5 Turbo. This calculator uses the exact same encodings for accurate token counts.
+            </p>
+            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.75, margin: 0 }}>
+              GPT-5.4 costs <strong style={{ color: "var(--text-primary)" }}>$2.50 / $15.00 per 1M tokens</strong> (input/output). GPT-4o runs at $2.50 / $10.00 per 1M. For budget tasks, GPT-4o Mini offers just $0.15 / $0.60 per 1M tokens.
+            </p>
+            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.75, margin: 0 }}>
+              Input and output tokens are billed separately — the same prompt costs different amounts depending on model and response length. Use the pricing comparison table below the calculator to pick the best price-to-quality ratio for your workload.
+            </p>
+          </div>
+        </div>
       </section>
 
       <FAQ />
+      </div>
     </>
   );
 }

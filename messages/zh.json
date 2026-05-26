@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "calculator": "计算器",
+    "pricing": "定价",
+    "blog": "博客",
+    "api": "API"
+  },
+  "hero": {
+    "badge_free": "免费",
+    "badge_realtime": "实时",
+    "badge_private": "私密",
+    "title": "免费LLM Token",
+    "title_accent": "计算器",
+    "subtitle_desktop": "为GPT-4o、Claude、Gemini、DeepSeek和LLaMA实时统计token数量并估算API成本——即时、私密、在浏览器中运行。",
+    "subtitle_mobile": "为20+个AI模型统计token并估算API成本。免费、即时、私密。"
+  },
+  "calculator": {
+    "system_prompt_tab": "系统提示词",
+    "user_message_tab": "用户消息",
+    "textarea_placeholder_system": "在此输入系统指令...",
+    "textarea_placeholder_user": "输入或粘贴文本以实时统计token数量...",
+    "btn_clear": "清除",
+    "btn_paste": "粘贴",
+    "btn_example": "示例",
+    "stat_tokens": "Token",
+    "stat_words": "词数",
+    "stat_chars": "字符",
+    "stat_input_cost": "输入成本",
+    "context_label": "上下文",
+    "output_est": "输出",
+    "output_est_label": "（估计）",
+    "input_label": "输入",
+    "total": "合计",
+    "btn_copy_stats": "复制统计",
+    "btn_share_link": "分享链接",
+    "chars_label": "字符"
+  },
+  "visualizer": {
+    "title": "Token可视化器",
+    "viewing": "正在查看",
+    "colored": "彩色",
+    "token_ids": "Token ID",
+    "legend": "图例：",
+    "legend_word": "单词",
+    "legend_punctuation": "标点",
+    "legend_subword": "子词",
+    "legend_space": "空格",
+    "legend_emoji": "表情",
+    "empty_state": "输入文本查看token"
+  },
+  "projector": {
+    "title": "月度成本预测器",
+    "requests_per_day": "每日请求数",
+    "avg_input_tokens": "输入token",
+    "avg_output_tokens": "输出token",
+    "model_col": "模型",
+    "monthly_cost_col": "月度成本",
+    "annual_cost_col": "年度成本",
+    "best_value": "此用量的最佳选择",
+    "export_comparison": "导出对比",
+    "updated_badge": "更新于 {date}"
+  },
+  "pricing_table": {
+    "title": "LLM API定价",
+    "title_accent": "（每1M Token）",
+    "model_col": "模型",
+    "provider_col": "提供商",
+    "input_col": "输入 / 1M",
+    "output_col": "输出 / 1M",
+    "context_col": "上下文"
+  },
+  "understanding": {
+    "title": "理解",
+    "title_accent": "分词原理",
+    "intro": "此工具是OpenAI、Anthropic和Google模型的通用分词器。我们使用官方Tiktoken库，准确率达99%。",
+    "bpe_title": "什么是BPE（字节对编码）？",
+    "bpe_body": "BPE是GPT模型使用的分词算法。它通过迭代合并最频繁的字符对，将文本分割为子词单元。",
+    "context_title": "什么是上下文窗口？",
+    "context_body": "上下文窗口是LLM在单次请求中可处理的最大token数。GPT-4o提供128K，Claude 3.5支持200K，Gemini 1.5 Pro最高2M。",
+    "cached_title": "什么是缓存输入定价？",
+    "cached_body": "缓存输入定价在您跨API调用重用相同提示前缀时，提供高达90%的折扣。",
+    "io_title": "输入 vs 输出 Token 成本",
+    "io_body": "输出token通常比输入token贵2-4倍。要优化成本，请设计能引出简洁回复的提示。"
+  },
+  "word_to_token": {
+    "title": "词到Token",
+    "title_accent": "转换指南",
+    "subtitle": "Token计数因内容类型和语言而异。使用此参考在使用计算器前估算token用量。",
+    "col_content_type": "内容类型",
+    "col_example": "示例",
+    "col_ratio": "比率",
+    "col_1000_words": "1000词 ≈",
+    "col_notes": "备注",
+    "row_english": "英文文本",
+    "row_code": "代码（Python/JS）",
+    "row_chinese": "中文/日文",
+    "row_technical": "技术文档",
+    "row_json": "JSON/XML数据"
+  },
+  "how_it_works": {
+    "title": "使用",
+    "title_accent": "方法",
+    "step1_title": "粘贴文本",
+    "step1_desc": "输入或粘贴任何文本。计算器实时分词。",
+    "step2_title": "选择模型",
+    "step2_desc": "从GPT-4o、Claude、Gemini、DeepSeek等20多个模型中选择。同样的文本在不同模型上成本可能相差2倍。",
+    "step3_title": "查看token + 成本",
+    "step3_desc": "即时查看token计数、API成本估算和上下文窗口使用率。无需注册。"
+  },
+  "seo_content": {
+    "title": "AI Token计数如何",
+    "title_accent": "工作？",
+    "p1": "GPT-4o、Claude、Gemini等AI模型不像人类那样阅读文本。它们将文本分割为token。",
+    "p2": "API定价基于token数量。我们的计算器通过WebAssembly完全在您的浏览器中运行——数据不会发送到任何服务器。",
+    "p3": "使用Token可视化器查看您的文本如何被分割为token。每个彩色方块代表一个token。"
+  },
+  "model_pages": {
+    "openai": {
+      "page_title": "OpenAI Token计算器",
+      "page_subtitle": "使用精确分词器计算ChatGPT和OpenAI token。实时计数、成本估算——100%免费。",
+      "compare_section_title": "比较OpenAI定价",
+      "how_it_works_title": "OpenAI分词原理"
+    },
+    "claude": {
+      "page_title": "Claude Token计算器",
+      "page_subtitle": "计算Anthropic Claude Sonnet 4.6、Opus 4.6和Haiku的token——100%免费。",
+      "compare_section_title": "比较Claude定价",
+      "how_it_works_title": "Claude分词原理"
+    },
+    "gemini": {
+      "page_title": "Gemini Token计算器",
+      "page_subtitle": "计算Google Gemini 2.5 Pro和所有Gemini模型的token——100%免费。",
+      "compare_section_title": "比较Gemini定价",
+      "how_it_works_title": "Gemini分词原理"
+    },
+    "deepseek": {
+      "page_title": "DeepSeek Token计算器",
+      "page_subtitle": "计算DeepSeek V3和R1的token。性价比最高的LLM——100%免费。",
+      "compare_section_title": "比较DeepSeek定价",
+      "how_it_works_title": "DeepSeek分词原理"
+    }
+  },
+  "footer": {
+    "tagline": "由开发者打造，为开发者服务。",
+    "tools_title": "工具",
+    "resources_title": "资源",
+    "connect_title": "关注",
+    "link_token_calculator": "Token计算器",
+    "link_gpt_calculator": "GPT计算器",
+    "link_claude_calculator": "Claude计算器",
+    "link_gemini_calculator": "Gemini计算器",
+    "link_pricing": "价格比较",
+    "link_blog": "博客",
+    "link_api_docs": "API文档",
+    "link_about": "关于",
+    "copyright": "© {year} tokencalculator.app",
+    "prices_updated": "价格更新日期：{date}",
+    "made_with_love": "在印度用♥制作"
+  },
+  "faq": {
+    "title": "常见问题",
+    "search_placeholder": "搜索问题..."
+  }
+}

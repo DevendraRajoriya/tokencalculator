@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "calculator": "계산기",
+    "pricing": "가격",
+    "blog": "블로그",
+    "api": "API"
+  },
+  "hero": {
+    "badge_free": "무료",
+    "badge_realtime": "실시간",
+    "badge_private": "프라이빗",
+    "title": "무료 LLM 토큰",
+    "title_accent": "계산기",
+    "subtitle_desktop": "GPT-4o, Claude, Gemini, DeepSeek, LLaMA의 토큰 수와 API 비용을 실시간으로 계산. 브라우저에서 즉시, 비공개로.",
+    "subtitle_mobile": "20개 이상의 AI 모델의 토큰을 세고 API 비용을 추정. 무료, 즉시, 비공개."
+  },
+  "calculator": {
+    "system_prompt_tab": "시스템 프롬프트",
+    "user_message_tab": "사용자 메시지",
+    "textarea_placeholder_system": "시스템 지시사항을 여기에 입력...",
+    "textarea_placeholder_user": "텍스트를 입력하거나 붙여넣어 실시간으로 토큰을 계산하세요...",
+    "btn_clear": "지우기",
+    "btn_paste": "붙여넣기",
+    "btn_example": "예제",
+    "stat_tokens": "토큰",
+    "stat_words": "단어",
+    "stat_chars": "문자",
+    "stat_input_cost": "입력 비용",
+    "context_label": "컨텍스트",
+    "output_est": "출력",
+    "output_est_label": "(추정)",
+    "input_label": "입력",
+    "total": "합계",
+    "btn_copy_stats": "통계 복사",
+    "btn_share_link": "링크 공유",
+    "chars_label": "문자"
+  },
+  "visualizer": {
+    "title": "토큰 시각화 도구",
+    "viewing": "보기",
+    "colored": "컬러",
+    "token_ids": "토큰 ID",
+    "legend": "범례:",
+    "legend_word": "단어",
+    "legend_punctuation": "구두점",
+    "legend_subword": "서브워드",
+    "legend_space": "공백",
+    "legend_emoji": "이모지",
+    "empty_state": "텍스트를 입력하여 토큰 확인"
+  },
+  "projector": {
+    "title": "월간 비용 프로젝터",
+    "requests_per_day": "요청/일",
+    "avg_input_tokens": "입력 토큰",
+    "avg_output_tokens": "출력 토큰",
+    "model_col": "모델",
+    "monthly_cost_col": "월 비용",
+    "annual_cost_col": "연간 비용",
+    "best_value": "이 사용량의 최적 모델",
+    "export_comparison": "비교 내보내기",
+    "updated_badge": "업데이트됨 {date}"
+  },
+  "pricing_table": {
+    "title": "LLM API 가격",
+    "title_accent": "(1M 토큰당)",
+    "model_col": "모델",
+    "provider_col": "제공업체",
+    "input_col": "입력 / 1M",
+    "output_col": "출력 / 1M",
+    "context_col": "컨텍스트"
+  },
+  "understanding": {
+    "title": "토크나이제이션",
+    "title_accent": "이해하기",
+    "intro": "이 도구는 OpenAI, Anthropic, Google 모델을 위한 유니버설 토크나이저입니다. 공식 Tiktoken 라이브러리를 사용하여 99% 정확도로 토큰을 카운트합니다.",
+    "bpe_title": "BPE(바이트 페어 인코딩)란?",
+    "bpe_body": "BPE는 GPT 모델에서 사용되는 토크나이제이션 알고리즘입니다. 가장 빈번한 문자 쌍을 반복적으로 병합하여 텍스트를 서브워드 단위로 분할합니다.",
+    "context_title": "컨텍스트 윈도우란?",
+    "context_body": "컨텍스트 윈도우는 LLM이 한 번의 요청에서 처리할 수 있는 최대 토큰 수입니다. GPT-4o는 128K, Claude 3.5는 200K, Gemini 1.5 Pro는 최대 2M을 지원합니다.",
+    "cached_title": "캐시된 입력 가격이란?",
+    "cached_body": "캐시된 입력 가격은 동일한 프롬프트 접두사를 API 호출에서 재사용할 때 최대 90% 할인을 제공합니다.",
+    "io_title": "입력 vs 출력 토큰 비용",
+    "io_body": "출력 토큰은 일반적으로 입력 토큰보다 2-4배 비쌉니다. 비용을 최적화하려면 간결한 응답을 유도하는 프롬프트를 설계하세요."
+  },
+  "word_to_token": {
+    "title": "단어에서 토큰으로",
+    "title_accent": "변환 가이드",
+    "subtitle": "토큰 수는 콘텐츠 유형과 언어에 따라 크게 달라집니다.",
+    "col_content_type": "콘텐츠 유형",
+    "col_example": "예시",
+    "col_ratio": "비율",
+    "col_1000_words": "1000 단어 ≈",
+    "col_notes": "참고",
+    "row_english": "영어 텍스트",
+    "row_code": "코드 (Python/JS)",
+    "row_chinese": "중국어/일본어",
+    "row_technical": "기술 문서",
+    "row_json": "JSON/XML 데이터"
+  },
+  "how_it_works": {
+    "title": "사용",
+    "title_accent": "방법",
+    "step1_title": "텍스트 붙여넣기",
+    "step1_desc": "텍스트를 입력하거나 붙여넣으세요. 계산기가 실시간으로 토크나이즈합니다.",
+    "step2_title": "모델 선택",
+    "step2_desc": "GPT-4o, Claude, Gemini, DeepSeek 등 20개 이상의 모델 중 선택. 같은 텍스트도 모델에 따라 비용이 2배 차이날 수 있습니다.",
+    "step3_title": "토큰 + 비용 확인",
+    "step3_desc": "토큰 수, API 비용 추정, 컨텍스트 윈도우 사용률을 즉시 확인. 가입 불필요."
+  },
+  "seo_content": {
+    "title": "AI 토큰 카운팅은 어떻게",
+    "title_accent": "작동하나요?",
+    "p1": "GPT-4o, Claude, Gemini와 같은 AI 모델은 사람처럼 텍스트를 읽지 않습니다. 대신 토큰으로 분할합니다.",
+    "p2": "API 가격은 토큰 수에 기반합니다. 우리의 계산기는 WebAssembly를 통해 브라우저에서 완전히 실행됩니다.",
+    "p3": "토큰 시각화 도구를 사용하여 텍스트가 어떻게 토큰으로 분할되는지 확인하세요."
+  },
+  "model_pages": {
+    "openai": {
+      "page_title": "OpenAI 토큰 계산기",
+      "page_subtitle": "ChatGPT와 OpenAI 토큰을 정확한 토크나이저로 계산. 실시간 카운팅, 비용 추정 — 100% 무료.",
+      "compare_section_title": "OpenAI 가격 비교",
+      "how_it_works_title": "OpenAI 토크나이제이션 작동 방식"
+    },
+    "claude": {
+      "page_title": "Claude 토큰 계산기",
+      "page_subtitle": "Anthropic Claude Sonnet 4.6, Opus 4.6, Haiku 토큰 계산 — 100% 무료.",
+      "compare_section_title": "Claude 가격 비교",
+      "how_it_works_title": "Claude 토크나이제이션 작동 방식"
+    },
+    "gemini": {
+      "page_title": "Gemini 토큰 계산기",
+      "page_subtitle": "Google Gemini 2.5 Pro와 모든 Gemini 모델 토큰 계산 — 100% 무료.",
+      "compare_section_title": "Gemini 가격 비교",
+      "how_it_works_title": "Gemini 토크나이제이션 작동 방식"
+    },
+    "deepseek": {
+      "page_title": "DeepSeek 토큰 계산기",
+      "page_subtitle": "DeepSeek V3와 R1 토큰 계산. 가장 비용 효율적인 LLM — 100% 무료.",
+      "compare_section_title": "DeepSeek 가격 비교",
+      "how_it_works_title": "DeepSeek 토크나이제이션 작동 방식"
+    }
+  },
+  "footer": {
+    "tagline": "개발자가 개발자를 위해 만들었습니다.",
+    "tools_title": "도구",
+    "resources_title": "리소스",
+    "connect_title": "연결",
+    "link_token_calculator": "토큰 계산기",
+    "link_gpt_calculator": "GPT 계산기",
+    "link_claude_calculator": "Claude 계산기",
+    "link_gemini_calculator": "Gemini 계산기",
+    "link_pricing": "가격 비교",
+    "link_blog": "블로그",
+    "link_api_docs": "API 문서",
+    "link_about": "소개",
+    "copyright": "© {year} tokencalculator.app",
+    "prices_updated": "가격 업데이트: {date}",
+    "made_with_love": "인도에서 ♥로 만들었습니다"
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "search_placeholder": "질문 검색..."
+  }
+}

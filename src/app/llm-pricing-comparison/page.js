@@ -1,9 +1,10 @@
 import { MODELS, formatNumber } from "@/lib/models";
+import PricingTable from "@/components/PricingTable";
 
 export const metadata = {
   title: "LLM API Pricing Comparison 2026 — GPT-4o, Claude, Gemini, DeepSeek Costs",
   description:
-    "Complete LLM API pricing comparison for 2026. Compare input/output costs, context windows, and value for GPT-4o, Claude Sonnet, Gemini 1.5 Pro, DeepSeek V3, and LLaMA 3.1. Updated March 2026.",
+    "Complete LLM API pricing comparison for 2026. Compare input/output costs, context windows, and value for GPT-4o, Claude Sonnet, Gemini 1.5 Pro, DeepSeek V3, and LLaMA 3.1. Updated April 2026.",
   keywords: [
     "LLM API pricing comparison",
     "AI API costs 2026",
@@ -14,7 +15,7 @@ export const metadata = {
   ],
   openGraph: {
     title: "LLM API Pricing Comparison 2026",
-    description: "Compare costs for GPT-4o, Claude, Gemini, DeepSeek and more. Updated March 2026.",
+    description: "Compare costs for GPT-4o, Claude, Gemini, DeepSeek and more. Updated April 2026.",
   },
   alternates: {
     canonical: "/llm-pricing-comparison",
@@ -31,168 +32,193 @@ export default function PricingComparison() {
     ],
   };
 
-  // Sort models by input price for default view
   const sortedModels = [...MODELS].sort((a, b) => a.inputPrice - b.inputPrice);
 
-  // Calculate cost for common use cases
+  // Stats
+  const cheapest = sortedModels[0];
+  const mostExpensive = [...MODELS].sort((a, b) => b.inputPrice - a.inputPrice)[0];
+  const biggestContext = [...MODELS].sort((a, b) => b.contextWindow - a.contextWindow)[0];
+  const totalModels = MODELS.length;
+  const uniqueProviders = [...new Set(MODELS.map(m => m.provider))].length;
+
   const useCases = [
-    { name: "Single chat message", tokens: 500, label: "~500 tokens" },
-    { name: "Blog post summary", tokens: 5000, label: "~5K tokens" },
-    { name: "Document analysis", tokens: 50000, label: "~50K tokens" },
-    { name: "Full context fill", tokens: 128000, label: "~128K tokens" },
+    { name: "Single chat message", tokens: 500, label: "~500 tokens", icon: "💬" },
+    { name: "Blog post summary", tokens: 5000, label: "~5K tokens", icon: "📝" },
+    { name: "Document analysis", tokens: 50000, label: "~50K tokens", icon: "📄" },
+    { name: "Full context fill", tokens: 128000, label: "~128K tokens", icon: "📚" },
   ];
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="hero" style={{ paddingBottom: "1.5rem" }}>
-        <nav style={{ fontSize: "0.8125rem", color: "var(--text-muted)", marginBottom: "1rem" }}>
-          <a href="/" style={{ color: "var(--text-tertiary)", textDecoration: "none" }}>Home</a>
-          <span style={{ margin: "0 0.5rem" }}>/</span>
-          <span style={{ color: "var(--text-primary)" }}>LLM Pricing Comparison</span>
-        </nav>
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: "0.5rem",
-          padding: "0.25rem 0.75rem", borderRadius: "var(--radius-full)",
-          background: "var(--success-subtle)", border: "1px solid var(--success)",
-          fontSize: "0.6875rem", fontWeight: 600, color: "var(--success)",
-          marginBottom: "0.75rem", fontFamily: "var(--font-mono)",
-        }}>
-          ● Last updated: March 2026
+      {/* Hero */}
+      <section className="lpc-hero container">
+        <div className="lpc-hero__badge">
+          <span className="lpc-hero__badge-dot" />
+          {totalModels} Models · {uniqueProviders} Providers
         </div>
-        <h1 className="hero__title" style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}>
-          LLM API <span>Pricing Comparison</span> 2026
+        <h1 className="hero__title lpc-hero__title">
+          LLM API <span style={{ color: 'var(--accent)' }}>Pricing Comparison</span>
         </h1>
-        <p className="hero__subtitle">
-          Compare costs for all major AI models side by side. Input/output pricing per 1M tokens,
-          context windows, and real cost calculations for common use cases.
+        <p className="hero__subtitle lpc-hero__subtitle">
+          Compare input &amp; output costs, context windows, and real-world pricing for all major AI models — side by side.
         </p>
+
+        {/* Quick Stats */}
+        <div className="lpc-quick-stats">
+          <div className="lpc-qstat">
+            <span className="lpc-qstat__val" style={{ color: 'var(--green)' }}>${cheapest.inputPrice < 0.1 ? cheapest.inputPrice.toFixed(3) : cheapest.inputPrice.toFixed(2)}</span>
+            <span className="lpc-qstat__label">Cheapest Input/1M</span>
+            <span className="lpc-qstat__model">{cheapest.name}</span>
+          </div>
+          <div className="lpc-qstat-divider" />
+          <div className="lpc-qstat">
+            <span className="lpc-qstat__val" style={{ color: 'var(--amber)' }}>${mostExpensive.inputPrice.toFixed(2)}</span>
+            <span className="lpc-qstat__label">Most Expensive/1M</span>
+            <span className="lpc-qstat__model">{mostExpensive.name}</span>
+          </div>
+          <div className="lpc-qstat-divider" />
+          <div className="lpc-qstat">
+            <span className="lpc-qstat__val" style={{ color: 'var(--blue)' }}>{formatNumber(biggestContext.contextWindow)}</span>
+            <span className="lpc-qstat__label">Largest Context</span>
+            <span className="lpc-qstat__model">{biggestContext.name}</span>
+          </div>
+        </div>
       </section>
 
       {/* Main Pricing Table */}
-      <section className="pricing-section">
-        <h2 className="pricing-section__title">💰 Price Per 1M Tokens (Sorted by Input Cost)</h2>
-        <div className="pricing-table-wrap">
-          <table className="pricing-table">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Provider</th>
-                <th>Input / 1M</th>
-                <th>Output / 1M</th>
-                <th>Context Window</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedModels.map((model) => (
-                <tr key={model.id}>
-                  <td>
-                    <div className="pricing-table__model">
-                      <span className="pricing-table__dot" style={{ backgroundColor: model.color }} />
-                      <a href={`/${model.id.includes("gpt") ? "gpt" : model.id.includes("claude") ? "claude" : model.id.includes("gemini") ? "gemini" : model.id.includes("deep") ? "deepseek" : "llama"}-token-calculator`}
-                        style={{ color: "inherit", textDecoration: "none" }}>
-                        {model.name}
-                      </a>
-                    </div>
-                  </td>
-                  <td style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem" }}>{model.provider}</td>
-                  <td className="pricing-table__price" style={{
-                    color: model.inputPrice <= 0.3 ? "var(--success)" : model.inputPrice <= 3 ? "var(--text-primary)" : "var(--warning)"
-                  }}>
-                    ${model.inputPrice < 0.1 ? model.inputPrice.toFixed(3) : model.inputPrice.toFixed(2)}
-                  </td>
-                  <td className="pricing-table__price">
-                    ${model.outputPrice < 1 ? model.outputPrice.toFixed(2) : model.outputPrice.toFixed(2)}
-                  </td>
-                  <td className="pricing-table__context">{formatNumber(model.contextWindow)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <section className="container lpc-section">
+        <PricingTable />
       </section>
 
       {/* Cost Calculator Per Use Case */}
-      <section className="pricing-section">
-        <h2 className="pricing-section__title">📊 Real Cost Comparison by Use Case</h2>
-        <div className="pricing-table-wrap">
-          <table className="pricing-table">
-            <thead>
-              <tr>
-                <th>Model</th>
-                {useCases.map((uc) => (
-                  <th key={uc.name}>{uc.label}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sortedModels.map((model) => (
-                <tr key={model.id}>
-                  <td>
-                    <div className="pricing-table__model">
-                      <span className="pricing-table__dot" style={{ backgroundColor: model.color }} />
-                      {model.name}
-                    </div>
-                  </td>
-                  {useCases.map((uc) => {
+      <section className="container lpc-section">
+        <div className="lpc-section-header">
+          <h2 className="lpc-h2">
+            Real Cost Comparison by <span style={{ color: 'var(--accent)' }}>Use Case</span>
+          </h2>
+          <p className="lpc-section-desc">
+            See exactly what each model costs for common workloads — from a single chat to filling an entire context window.
+          </p>
+        </div>
+
+        {/* Use Case Cards */}
+        <div className="lpc-usecase-grid">
+          {useCases.map((uc) => {
+            const cheapestForCase = sortedModels[0];
+            const cheapestCost = (uc.tokens / 1_000_000) * cheapestForCase.inputPrice;
+            return (
+              <div key={uc.name} className="lpc-usecase-card">
+                <div className="lpc-usecase-card__header">
+                  <span className="lpc-usecase-card__icon">{uc.icon}</span>
+                  <div>
+                    <div className="lpc-usecase-card__name">{uc.name}</div>
+                    <div className="lpc-usecase-card__tokens">{uc.label}</div>
+                  </div>
+                </div>
+                <div className="lpc-usecase-card__list">
+                  {sortedModels.slice(0, 6).map((model) => {
                     const cost = (uc.tokens / 1_000_000) * model.inputPrice;
+                    const isCheapest = model.id === cheapestForCase.id;
                     return (
-                      <td key={uc.name} className="pricing-table__price">
-                        ${cost < 0.01 ? cost.toFixed(5) : cost.toFixed(4)}
-                      </td>
+                      <div key={model.id} className={`lpc-usecase-row ${isCheapest ? 'lpc-usecase-row--best' : ''}`}>
+                        <div className="lpc-usecase-row__model">
+                          <span className="lpc-model-dot" style={{ background: model.color }} />
+                          <span>{model.name}</span>
+                        </div>
+                        <span className={`lpc-usecase-row__cost ${isCheapest ? 'lpc-usecase-row__cost--best' : ''}`}>
+                          ${cost < 0.01 ? cost.toFixed(5) : cost.toFixed(4)}
+                        </span>
+                      </div>
                     );
                   })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {/* Key Takeaways */}
-      <section className="container container--narrow" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
-        <article style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "1rem" }}>
-            Key Pricing Takeaways for 2026
+      <section className="container lpc-section">
+        <div className="lpc-section-header">
+          <h2 className="lpc-h2">
+            Key Pricing <span style={{ color: 'var(--accent)' }}>Takeaways</span> for 2026
           </h2>
+        </div>
 
-          <div style={{ marginBottom: "1.25rem" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-              🏆 Cheapest Overall: Gemini 1.5 Flash
+        <div className="lpc-takeaways-grid">
+          <div className="lpc-takeaway card">
+            <div className="lpc-takeaway__icon-wrap" style={{ '--tw-color': 'var(--green)' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <h3 className="lpc-takeaway__title">
+              Cheapest Overall
             </h3>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>
-              At $0.075 per 1M input tokens, Gemini 1.5 Flash is the cheapest major LLM API. It&apos;s 33x cheaper than GPT-4o for input tokens while offering a massive 1M context window. Ideal for high-volume, simple tasks.
+            <div className="lpc-takeaway__model">{cheapest.name}</div>
+            <p className="lpc-takeaway__desc">
+              At ${cheapest.inputPrice < 0.1 ? cheapest.inputPrice.toFixed(3) : cheapest.inputPrice.toFixed(2)} per 1M input tokens, {cheapest.name} is the most affordable major LLM API. Ideal for high-volume, simple tasks where cost efficiency is paramount.
             </p>
           </div>
 
-          <div style={{ marginBottom: "1.25rem" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-              ⚡ Best Value Mid-Tier: DeepSeek V3
+          <div className="lpc-takeaway card">
+            <div className="lpc-takeaway__icon-wrap" style={{ '--tw-color': 'var(--purple)' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3 className="lpc-takeaway__title">
+              Best Value Mid-Tier
             </h3>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>
-              DeepSeek V3 offers GPT-4-class reasoning at $0.27/$1.10 per 1M tokens — approximately 9x cheaper than GPT-4o. Best choice for developers who need strong performance on a budget.
+            <div className="lpc-takeaway__model">DeepSeek V3</div>
+            <p className="lpc-takeaway__desc">
+              DeepSeek V3 offers GPT-4-class reasoning at $0.27/$1.10 per 1M tokens — approximately 9× cheaper than GPT-4o. Best choice for developers who need strong performance on a budget.
             </p>
           </div>
 
-          <div style={{ marginBottom: "1.25rem" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-              📏 Largest Context: Gemini 1.5 Pro (2M tokens)
+          <div className="lpc-takeaway card">
+            <div className="lpc-takeaway__icon-wrap" style={{ '--tw-color': 'var(--blue)' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <h3 className="lpc-takeaway__title">
+              Largest Context Window
             </h3>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>
-              Gemini 1.5 Pro&apos;s 2 million token context window dwarfs all competitors. Claude offers 200K, while GPT-4o and DeepSeek V3 provide 128K. For processing entire codebases or long documents, Gemini Pro is unmatched.
+            <div className="lpc-takeaway__model">{biggestContext.name}</div>
+            <p className="lpc-takeaway__desc">
+              {biggestContext.name}&apos;s {formatNumber(biggestContext.contextWindow)} token context window dwarfs all competitors. For processing entire codebases or very long documents, it&apos;s unmatched in capacity.
             </p>
           </div>
 
-          <div>
-            <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-              🎯 Best for Quality-Critical Tasks: GPT-4o
+          <div className="lpc-takeaway card">
+            <div className="lpc-takeaway__icon-wrap" style={{ '--tw-color': 'var(--amber)' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <h3 className="lpc-takeaway__title">
+              Best for Quality-Critical
             </h3>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>
-              Despite being mid-priced at $2.50/$10.00 per 1M tokens, GPT-4o remains the go-to for tasks where output quality matters most — creative writing, complex reasoning, and nuanced instruction-following. Its o200k_base tokenizer is also the most token-efficient for English text.
+            <div className="lpc-takeaway__model">Claude Opus 4.7</div>
+            <p className="lpc-takeaway__desc">
+              Despite premium pricing at $5.00/$25.00 per 1M tokens, Claude Opus 4.7 remains the go-to for tasks where output quality matters most — complex reasoning, nuanced writing, and multi-step analysis.
             </p>
           </div>
-        </article>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container lpc-section">
+        <div className="lpc-cta-card card">
+          <div className="lpc-cta-card__content">
+            <h2 className="lpc-cta-card__title">
+              Ready to calculate your <span style={{ color: 'var(--accent)' }}>actual costs?</span>
+            </h2>
+            <p className="lpc-cta-card__desc">
+              Paste your prompt into our free token calculator and see exact token counts, cost breakdowns, and monthly projections for any model.
+            </p>
+            <a href="/" className="btn btn--primary lpc-cta-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Open Token Calculator
+            </a>
+          </div>
+        </div>
       </section>
     </>
   );

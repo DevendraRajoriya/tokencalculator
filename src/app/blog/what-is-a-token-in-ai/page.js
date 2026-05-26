@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
 
 export const metadata = {
@@ -6,7 +7,7 @@ export const metadata = {
     "A token is the smallest unit of text that AI models like GPT-4o, Claude, and Gemini process. Learn how tokenization works, why token counts differ between models, how tokens affect API costs, and how to count tokens for free.",
   keywords: [
     "what is a token in AI",
-    "what is a token ChatGPT",
+    "what is a token in ChatGPT",
     "AI tokenization explained",
     "how does tokenization work",
     "token vs word AI",
@@ -162,7 +163,7 @@ export default function WhatIsAToken() {
         </h1>
       </section>
 
-      <section className="container container--narrow" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
+      <section className="container" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
         <article style={s.article}>
 
           {/* Direct answer — first 50 words for featured snippet */}
@@ -203,6 +204,10 @@ export default function WhatIsAToken() {
           <h2 id="what-is-tokenization" style={s.h2}>What is Tokenization?</h2>
           <p style={s.p}>
             Tokenization is the process of breaking text into smaller pieces called <strong style={s.strong}>tokens</strong> that AI models can understand and process. Think of it like breaking a sentence into puzzle pieces — but instead of splitting at word boundaries, the model splits at boundaries that are most efficient for its vocabulary.
+          </p>
+          <h3 style={{...s.h2, fontSize: "1.25rem", marginTop: "2rem"}}>What is a Token in ChatGPT?</h3>
+          <p style={s.p}>
+            If you are using ChatGPT or the OpenAI API, you are engaging with the GPT-4o or GPT-4o Mini models which rely on the `o200k_base` tokenizer. When asking <strong style={s.strong}>"what is a token in ChatGPT?"</strong>, the answer is slightly more complex than a single word: a token for ChatGPT usually represents about 4 characters of text or roughly 0.75 of an average English word. 
           </p>
           <p style={s.p}>
             For example, the sentence &ldquo;I love programming&rdquo; might tokenize as:

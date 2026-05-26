@@ -1,0 +1,8 @@
+{
+  "name": "tokencalculator",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

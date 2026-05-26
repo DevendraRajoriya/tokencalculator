@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "calculator": "Calculadora",
+    "pricing": "Preços",
+    "blog": "Blog",
+    "api": "API"
+  },
+  "hero": {
+    "badge_free": "Grátis",
+    "badge_realtime": "Tempo real",
+    "badge_private": "Privado",
+    "title": "Calculadora de Tokens",
+    "title_accent": "LLM Grátis",
+    "subtitle_desktop": "Conte tokens e estime custos de API para GPT-4o, Claude, Gemini, DeepSeek e LLaMA — instantâneo, privado, no seu navegador.",
+    "subtitle_mobile": "Conte tokens e estime custos de API para mais de 20 modelos de IA. Grátis, instantâneo e privado."
+  },
+  "calculator": {
+    "system_prompt_tab": "Prompt do Sistema",
+    "user_message_tab": "Mensagem do Usuário",
+    "textarea_placeholder_system": "Digite as instruções do sistema aqui...",
+    "textarea_placeholder_user": "Digite ou cole texto para contar tokens em tempo real...",
+    "btn_clear": "Limpar",
+    "btn_paste": "Colar",
+    "btn_example": "Exemplo",
+    "stat_tokens": "Tokens",
+    "stat_words": "Palavras",
+    "stat_chars": "Caracteres",
+    "stat_input_cost": "Custo de entrada",
+    "context_label": "Contexto",
+    "output_est": "SAÍDA",
+    "output_est_label": "(EST)",
+    "input_label": "ENTRADA",
+    "total": "TOTAL",
+    "btn_copy_stats": "Copiar estatísticas",
+    "btn_share_link": "Compartilhar link",
+    "chars_label": "caracteres"
+  },
+  "visualizer": {
+    "title": "Visualizador de Tokens",
+    "viewing": "Visualizando",
+    "colored": "Colorido",
+    "token_ids": "IDs de Token",
+    "legend": "Legenda:",
+    "legend_word": "Palavra",
+    "legend_punctuation": "Pontuação",
+    "legend_subword": "Subpalavra",
+    "legend_space": "Espaço",
+    "legend_emoji": "Emoji",
+    "empty_state": "Digite texto para ver tokens"
+  },
+  "projector": {
+    "title": "Projetor de custos mensais",
+    "requests_per_day": "Solicitações/dia",
+    "avg_input_tokens": "Tokens de entrada",
+    "avg_output_tokens": "Tokens de saída",
+    "model_col": "Modelo",
+    "monthly_cost_col": "Custo mensal",
+    "annual_cost_col": "Custo anual",
+    "best_value": "Melhor valor para este uso",
+    "export_comparison": "Exportar comparação",
+    "updated_badge": "Atualizado {date}"
+  },
+  "pricing_table": {
+    "title": "Preços de API LLM por",
+    "title_accent": "1M de Tokens",
+    "model_col": "Modelo",
+    "provider_col": "Provedor",
+    "input_col": "Entrada / 1M",
+    "output_col": "Saída / 1M",
+    "context_col": "Contexto"
+  },
+  "understanding": {
+    "title": "Entendendo a",
+    "title_accent": "Tokenização",
+    "intro": "Esta ferramenta funciona como um tokenizador universal para modelos OpenAI, Anthropic e Google. Usamos bibliotecas oficiais Tiktoken para 99% de precisão.",
+    "bpe_title": "O que é BPE (Byte-Pair Encoding)?",
+    "bpe_body": "BPE é o algoritmo de tokenização usado pelos modelos GPT. Ele divide o texto em unidades de subpalavra mesclando iterativamente os pares de caracteres mais frequentes.",
+    "context_title": "O que é uma janela de contexto?",
+    "context_body": "A janela de contexto é o número máximo de tokens que um LLM pode processar em uma única solicitação. GPT-4o oferece 128K tokens, Claude 3.5 suporta 200K e Gemini 1.5 Pro até 2M.",
+    "cached_title": "O que é preço de entrada em cache?",
+    "cached_body": "Preço de entrada em cache oferece descontos significativos (até 90%) quando você reutiliza o mesmo prefixo de prompt em chamadas de API.",
+    "io_title": "Custos de tokens de entrada vs saída",
+    "io_body": "Tokens de saída são tipicamente 2-4x mais caros que tokens de entrada. Para otimizar custos, projete prompts que gerem respostas concisas."
+  },
+  "word_to_token": {
+    "title": "Guia de Conversão",
+    "title_accent": "Palavra para Token",
+    "subtitle": "A contagem de tokens varia significativamente com base no tipo de conteúdo e idioma.",
+    "col_content_type": "Tipo de conteúdo",
+    "col_example": "Exemplo",
+    "col_ratio": "Proporção",
+    "col_1000_words": "1000 Palavras ≈",
+    "col_notes": "Notas",
+    "row_english": "Texto em inglês",
+    "row_code": "Código (Python/JS)",
+    "row_chinese": "Chinês/Japonês",
+    "row_technical": "Escrita técnica",
+    "row_json": "Dados JSON/XML"
+  },
+  "how_it_works": {
+    "title": "Como",
+    "title_accent": "funciona",
+    "step1_title": "Cole seu texto",
+    "step1_desc": "Digite ou cole qualquer texto. A calculadora tokeniza em tempo real enquanto você digita.",
+    "step2_title": "Selecione seu modelo",
+    "step2_desc": "Escolha entre GPT-4o, Claude, Gemini, DeepSeek e mais de 20 modelos. O mesmo texto pode custar 2× mais em modelos diferentes.",
+    "step3_title": "Veja tokens + custo",
+    "step3_desc": "Veja instantaneamente a contagem de tokens, custo API estimado e proximidade do limite da janela de contexto. Sem cadastro."
+  },
+  "seo_content": {
+    "title": "Como funciona a contagem de tokens em",
+    "title_accent": "IA?",
+    "p1": "Modelos de IA como GPT-4o, Claude e Gemini não leem texto como humanos. Eles dividem o texto em tokens.",
+    "p2": "Os preços da API são baseados na contagem de tokens. Nossa calculadora usa WebAssembly no seu navegador — nenhum dado é enviado a servidores.",
+    "p3": "Use o Visualizador de Tokens para ver exatamente como seu texto é dividido em tokens."
+  },
+  "model_pages": {
+    "openai": {
+      "page_title": "Calculadora de Tokens da OpenAI",
+      "page_subtitle": "Conte tokens de ChatGPT e OpenAI com tokenizador preciso. Contagem em tempo real, estimativa de custos — 100% grátis.",
+      "compare_section_title": "Comparar Preços da OpenAI",
+      "how_it_works_title": "Como Funciona a Tokenização da OpenAI"
+    },
+    "claude": {
+      "page_title": "Calculadora de Tokens do Claude",
+      "page_subtitle": "Conte tokens para Anthropic Claude Sonnet 4.6, Opus 4.6 e Haiku — 100% grátis.",
+      "compare_section_title": "Comparar Preços do Claude",
+      "how_it_works_title": "Como Funciona a Tokenização do Claude"
+    },
+    "gemini": {
+      "page_title": "Calculadora de Tokens do Gemini",
+      "page_subtitle": "Conte tokens para Google Gemini 2.5 Pro e todos os modelos Gemini — 100% grátis.",
+      "compare_section_title": "Comparar Preços do Gemini",
+      "how_it_works_title": "Como Funciona a Tokenização do Gemini"
+    },
+    "deepseek": {
+      "page_title": "Calculadora de Tokens do DeepSeek",
+      "page_subtitle": "Conte tokens para DeepSeek V3 e R1. Um dos LLMs mais acessíveis — 100% grátis.",
+      "compare_section_title": "Comparar Preços do DeepSeek",
+      "how_it_works_title": "Como Funciona a Tokenização do DeepSeek"
+    }
+  },
+  "footer": {
+    "tagline": "Construído por devs, para devs.",
+    "tools_title": "Ferramentas",
+    "resources_title": "Recursos",
+    "connect_title": "Conectar",
+    "link_token_calculator": "Calculadora de Tokens",
+    "link_gpt_calculator": "Calculadora GPT",
+    "link_claude_calculator": "Calculadora Claude",
+    "link_gemini_calculator": "Calculadora Gemini",
+    "link_pricing": "Comparação de preços",
+    "link_blog": "Blog",
+    "link_api_docs": "Documentação API",
+    "link_about": "Sobre",
+    "copyright": "© {year} tokencalculator.app",
+    "prices_updated": "Preços atualizados: {date}",
+    "made_with_love": "Feito com ♥ na Índia"
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "search_placeholder": "Pesquisar perguntas..."
+  }
+}

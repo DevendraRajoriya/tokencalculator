@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "calculator": "Calculadora",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "api": "API"
+  },
+  "hero": {
+    "badge_free": "Gratis",
+    "badge_realtime": "Tiempo real",
+    "badge_private": "Privado",
+    "title": "Calculadora de Tokens",
+    "title_accent": "LLM Gratis",
+    "subtitle_desktop": "Cuenta tokens y estima costos de API para GPT-4o, Claude, Gemini, DeepSeek y LLaMA — al instante, en privado, en tu navegador.",
+    "subtitle_mobile": "Cuenta tokens y estima costos de API para más de 20 modelos de IA. Gratis, instantáneo y privado."
+  },
+  "calculator": {
+    "system_prompt_tab": "Prompt del Sistema",
+    "user_message_tab": "Mensaje del Usuario",
+    "textarea_placeholder_system": "Escribe las instrucciones del sistema aquí...",
+    "textarea_placeholder_user": "Escribe o pega texto para contar tokens en tiempo real...",
+    "btn_clear": "Limpiar",
+    "btn_paste": "Pegar",
+    "btn_example": "Ejemplo",
+    "stat_tokens": "Tokens",
+    "stat_words": "Palabras",
+    "stat_chars": "Caracteres",
+    "stat_input_cost": "Costo de entrada",
+    "context_label": "Contexto",
+    "output_est": "SALIDA",
+    "output_est_label": "(EST)",
+    "input_label": "ENTRADA",
+    "total": "TOTAL",
+    "btn_copy_stats": "Copiar estadísticas",
+    "btn_share_link": "Compartir enlace",
+    "chars_label": "caracteres"
+  },
+  "visualizer": {
+    "title": "Visualizador de Tokens",
+    "viewing": "Viendo",
+    "colored": "Coloreado",
+    "token_ids": "IDs de Token",
+    "legend": "Leyenda:",
+    "legend_word": "Palabra",
+    "legend_punctuation": "Puntuación",
+    "legend_subword": "Subpalabra",
+    "legend_space": "Espacio",
+    "legend_emoji": "Emoji",
+    "empty_state": "Escribe texto para ver tokens"
+  },
+  "projector": {
+    "title": "Proyector de costos mensuales",
+    "requests_per_day": "Solicitudes/día",
+    "avg_input_tokens": "Tokens de entrada",
+    "avg_output_tokens": "Tokens de salida",
+    "model_col": "Modelo",
+    "monthly_cost_col": "Costo mensual",
+    "annual_cost_col": "Costo anual",
+    "best_value": "Mejor valor para este uso",
+    "export_comparison": "Exportar comparación",
+    "updated_badge": "Actualizado {date}"
+  },
+  "pricing_table": {
+    "title": "Precios de API LLM por",
+    "title_accent": "1M de Tokens",
+    "model_col": "Modelo",
+    "provider_col": "Proveedor",
+    "input_col": "Entrada / 1M",
+    "output_col": "Salida / 1M",
+    "context_col": "Contexto"
+  },
+  "understanding": {
+    "title": "Entendiendo la",
+    "title_accent": "Tokenización",
+    "intro": "Esta herramienta funciona como un tokenizador universal para modelos de OpenAI, Anthropic y Google. Utilizamos las bibliotecas oficiales de Tiktoken y tokenizadores específicos de cada modelo para una precisión del 99%.",
+    "bpe_title": "¿Qué es BPE (Byte-Pair Encoding)?",
+    "bpe_body": "BPE es el algoritmo de tokenización utilizado por los modelos GPT. Divide el texto en unidades de subpalabra fusionando iterativamente los pares de caracteres más frecuentes. Esto permite a los modelos manejar palabras raras de manera eficiente.",
+    "context_title": "¿Qué es una ventana de contexto?",
+    "context_body": "La ventana de contexto es la cantidad máxima de tokens que un LLM puede procesar en una sola solicitud (entrada + salida combinadas). GPT-4o ofrece 128K tokens, Claude 3.5 soporta 200K y Gemini 1.5 Pro hasta 2M.",
+    "cached_title": "¿Qué es la fijación de precios de entrada en caché?",
+    "cached_body": "La fijación de precios de entrada en caché ofrece descuentos significativos (hasta un 90%) cuando reutilizas el mismo prefijo de prompt en llamadas API.",
+    "io_title": "Costos de tokens de entrada vs salida",
+    "io_body": "Los tokens de salida son típicamente 2-4x más caros que los de entrada porque requieren generación secuencial. Para optimizar costos, diseña prompts que generen respuestas concisas."
+  },
+  "word_to_token": {
+    "title": "Guía de Conversión",
+    "title_accent": "Palabra a Token",
+    "subtitle": "El conteo de tokens varía significativamente según el tipo de contenido y el idioma. Usa esta referencia para estimar el uso de tokens.",
+    "col_content_type": "Tipo de contenido",
+    "col_example": "Ejemplo",
+    "col_ratio": "Proporción",
+    "col_1000_words": "1000 Palabras ≈",
+    "col_notes": "Notas",
+    "row_english": "Texto en inglés",
+    "row_code": "Código (Python/JS)",
+    "row_chinese": "Chino/Japonés",
+    "row_technical": "Escritura técnica",
+    "row_json": "Datos JSON/XML"
+  },
+  "how_it_works": {
+    "title": "Cómo",
+    "title_accent": "funciona",
+    "step1_title": "Pega tu texto",
+    "step1_desc": "Escribe o pega cualquier texto — un prompt del sistema, mensaje de usuario o conversación completa. La calculadora tokeniza en tiempo real.",
+    "step2_title": "Selecciona tu modelo",
+    "step2_desc": "Elige entre GPT-4o, Claude, Gemini, DeepSeek y más de 20 modelos. El mismo texto puede costar 2× más en diferentes modelos.",
+    "step3_title": "Ve tokens + costo",
+    "step3_desc": "Ve al instante el conteo exacto de tokens, el costo API estimado y qué tan cerca estás del límite de la ventana de contexto."
+  },
+  "seo_content": {
+    "title": "¿Cómo funciona el conteo de tokens en",
+    "title_accent": "IA?",
+    "p1": "Los modelos de IA como GPT-4o, Claude y Gemini no leen el texto como los humanos. En su lugar, dividen el texto en tokens — pequeños fragmentos que pueden ser palabras completas, partes de palabras o incluso caracteres individuales.",
+    "p2": "Esto importa porque los precios de la API se basan en el conteo de tokens, no en el conteo de palabras. Nuestra calculadora ejecuta todo en tu navegador vía WebAssembly — tu texto nunca se envía a ningún servidor.",
+    "p3": "Usa el Visualizador de Tokens para ver exactamente cómo tu texto se divide en tokens. Cada chip de color representa un token."
+  },
+  "model_pages": {
+    "openai": {
+      "page_title": "Calculadora de Tokens de OpenAI",
+      "page_subtitle": "Cuenta tokens de ChatGPT y OpenAI con un tokenizador preciso. Conteo en tiempo real, estimación de costos y visualización de tokens — 100% gratis.",
+      "compare_section_title": "Comparar Precios de OpenAI",
+      "how_it_works_title": "Cómo Funciona la Tokenización de OpenAI"
+    },
+    "claude": {
+      "page_title": "Calculadora de Tokens de Claude",
+      "page_subtitle": "Cuenta tokens para Anthropic Claude Sonnet 4.6, Opus 4.6 y Haiku. Conteo en tiempo real, estimación de costos — 100% gratis.",
+      "compare_section_title": "Comparar Precios de Claude",
+      "how_it_works_title": "Cómo Funciona la Tokenización de Claude"
+    },
+    "gemini": {
+      "page_title": "Calculadora de Tokens de Gemini",
+      "page_subtitle": "Cuenta tokens para Google Gemini 2.5 Pro y todos los modelos Gemini. Conteo en tiempo real — 100% gratis.",
+      "compare_section_title": "Comparar Precios de Gemini",
+      "how_it_works_title": "Cómo Funciona la Tokenización de Gemini"
+    },
+    "deepseek": {
+      "page_title": "Calculadora de Tokens de DeepSeek",
+      "page_subtitle": "Cuenta tokens para DeepSeek V3 y R1. Uno de los LLM más rentables — 100% gratis.",
+      "compare_section_title": "Comparar Precios de DeepSeek",
+      "how_it_works_title": "Cómo Funciona la Tokenización de DeepSeek"
+    }
+  },
+  "footer": {
+    "tagline": "Construido por desarrolladores, para desarrolladores.",
+    "tools_title": "Herramientas",
+    "resources_title": "Recursos",
+    "connect_title": "Conectar",
+    "link_token_calculator": "Calculadora de Tokens",
+    "link_gpt_calculator": "Calculadora GPT",
+    "link_claude_calculator": "Calculadora Claude",
+    "link_gemini_calculator": "Calculadora Gemini",
+    "link_pricing": "Comparación de precios",
+    "link_blog": "Blog",
+    "link_api_docs": "Documentación API",
+    "link_about": "Acerca de",
+    "copyright": "© {year} tokencalculator.app",
+    "prices_updated": "Precios actualizados: {date}",
+    "made_with_love": "Hecho con ♥ en India"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "search_placeholder": "Buscar preguntas..."
+  }
+}

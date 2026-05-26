@@ -4,14 +4,25 @@ import FAQ from "@/components/FAQ";
 export const metadata = {
   title: "DeepSeek Token Calculator — Free DeepSeek V3 Token Counter & Cost Estimator",
   description:
-    "Free DeepSeek token calculator. Count tokens, estimate API costs, and visualize tokenization for DeepSeek V3 in real time. One of the cheapest LLM APIs available in 2026.",
-  keywords: ["DeepSeek token calculator", "DeepSeek V3 token counter", "cheapest LLM API", "DeepSeek cost calculator"],
+    "Free DeepSeek token calculator with built-in tokenizer. Count tokens, estimate API costs, and visualize tokenization for DeepSeek V3 in real time. One of the cheapest LLM APIs available in 2026.",
+  keywords: ["DeepSeek token calculator", "DeepSeek V3 token counter", "DeepSeek tokenizer", "cheapest LLM API", "DeepSeek cost calculator", "tokenizer"],
   openGraph: {
     title: "DeepSeek Token Calculator — Free Token Counter",
     description: "Count DeepSeek V3 tokens, estimate API costs, and visualize tokenization in real time.",
   },
   alternates: {
     canonical: "/deepseek-token-calculator",
+    languages: {
+      "x-default": "/deepseek-token-calculator",
+      en: "/deepseek-token-calculator",
+      de: "/de/deepseek-token-calculator",
+      fr: "/fr/deepseek-token-calculator",
+      es: "/es/deepseek-token-calculator",
+      ja: "/ja/deepseek-token-calculator",
+      "pt-BR": "/pt-br/deepseek-token-calculator",
+      ko: "/ko/deepseek-token-calculator",
+      zh: "/zh/deepseek-token-calculator",
+    },
   },
 };
 
@@ -23,7 +34,7 @@ export default function DeepSeekTokenCalculator() {
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free real-time token calculator for DeepSeek V3 — one of the most cost-effective LLM APIs.",
+    description: "Free real-time DeepSeek token calculator with tokenizer for DeepSeek V3 — one of the most cost-effective LLM APIs.",
   };
 
   const breadcrumbSchema = {
@@ -51,16 +62,16 @@ export default function DeepSeekTokenCalculator() {
         </h1>
         <p className="hero__subtitle">
           Count tokens for DeepSeek V3 — one of the cheapest LLM APIs in 2026.
-          Real-time counting, cost estimation, and visualization — 100% free.
+          Real-time token calculator with tokenizer, cost estimation, and visualization — 100% free.
         </p>
       </section>
 
       <ModelCalculator
         modelId="deepseek-v3"
-        relatedModelIds={["gpt-4o-mini", "gpt-4o", "claude-3-haiku", "llama-3.1-70b"]}
+        relatedModelIds={["deepseek-r1", "gpt-4o-mini", "gpt-4o", "claude-3-haiku", "gemini-2-5-flash"]}
       />
 
-      <section className="container container--narrow" style={{ marginBottom: "2rem", padding: "0 1.5rem" }}>
+      <section className="container" style={{ marginBottom: "2rem", padding: "0 1.5rem" }}>
         <article style={{ maxWidth: "720px", margin: "0 auto" }}>
           <h2 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: "0.75rem" }}>
             Why DeepSeek V3 Is the Budget Champion

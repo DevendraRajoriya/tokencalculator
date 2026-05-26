@@ -30,7 +30,7 @@ export default function About() {
         </p>
       </section>
 
-      <section className="container container--narrow" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
+      <section className="container" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
         <article style={{ maxWidth: "720px", margin: "0 auto" }}>
 
           <h2 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.75rem" }}>

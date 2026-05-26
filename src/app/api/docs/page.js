@@ -52,7 +52,7 @@ export default function APIDocs() {
         </p>
       </section>
 
-      <section className="container container--narrow" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
+      <section className="container" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto" }}>
 
           {/* Endpoint */}
@@ -68,13 +68,13 @@ export default function APIDocs() {
                 padding: "0.25rem 0.5rem", borderRadius: "var(--radius-sm)",
                 background: "var(--success-subtle)", color: "var(--success)",
                 fontFamily: "var(--font-mono)", fontSize: "0.75rem", fontWeight: 700,
-              }}>GET</span>
+              }}>GET / POST</span>
               <code style={{
                 fontFamily: "var(--font-mono)", fontSize: "0.875rem", fontWeight: 600,
               }}>/api/count-tokens</code>
             </div>
             <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", marginBottom: "0" }}>
-              Count tokens and estimate costs for any supported AI model.
+              Count tokens and estimate costs for any supported AI model. Use POST for larger payloads.
             </p>
           </div>
 
@@ -100,13 +100,13 @@ export default function APIDocs() {
                   <td><code style={{ fontFamily: "var(--font-mono)", fontSize: "0.8125rem" }}>text</code></td>
                   <td style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem" }}>string</td>
                   <td><span style={{ color: "var(--error)", fontWeight: 600, fontSize: "0.8125rem" }}>Yes</span></td>
-                  <td style={{ fontSize: "0.8125rem" }}>The text to count tokens for (max 10,000 characters)</td>
+                  <td style={{ fontSize: "0.8125rem" }}>The text string to tokenize. Limit: 10k chars (GET) or 100k chars (POST json).</td>
                 </tr>
                 <tr>
                   <td><code style={{ fontFamily: "var(--font-mono)", fontSize: "0.8125rem" }}>model</code></td>
                   <td style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem" }}>string</td>
                   <td style={{ color: "var(--text-muted)", fontSize: "0.8125rem" }}>No</td>
-                  <td style={{ fontSize: "0.8125rem" }}>Model ID (default: gpt-4o)</td>
+                  <td style={{ fontSize: "0.8125rem" }}>Model ID string (default: gpt-4o). Selects pricing profile.</td>
                 </tr>
               </tbody>
             </table>
@@ -139,18 +139,28 @@ export default function APIDocs() {
             overflow: "auto", marginBottom: "1.5rem",
             lineHeight: 1.6, color: "var(--text-secondary)",
           }}>
-{`curl "https://tokencalculator.vercel.app/api/count-tokens?text=Hello%20world&model=gpt-4o"
+{`# 1. GET Request (For small payloads)
+curl "https://tokencalculator.vercel.app/api/count-tokens?text=Hello%20world&model=gpt-4o"
 
-# JavaScript
-fetch('/api/count-tokens?text=Hello%20world&model=gpt-4o')
+# 2. POST Request (Recommended for code / large docs)
+curl -X POST "https://tokencalculator.vercel.app/api/count-tokens" \\
+     -H "Content-Type: application/json" \\
+     -d '{"text": "def compute_loss(): pass", "model": "gpt-4o"}'
+
+# JavaScript / Node.js
+fetch('https://tokencalculator.vercel.app/api/count-tokens', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ text: 'Hello world', model: 'gpt-4o' })
+})
   .then(res => res.json())
   .then(data => console.log(data));
 
 # Python
 import requests
-resp = requests.get(
+resp = requests.post(
   'https://tokencalculator.vercel.app/api/count-tokens',
-  params={'text': 'Hello world', 'model': 'gpt-4o'}
+  json={'text': 'Hello world', 'model': 'gpt-4o'}
 )
 print(resp.json())`}
           </pre>
@@ -175,14 +185,14 @@ print(resp.json())`}
           </h2>
           <ul style={{
             fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.8,
-            paddingLeft: "1.25rem",
+            paddingLeft: "1.25rem", marginBottom: "3rem"
           }}>
-            <li>Maximum text length: <strong>10,000 characters</strong> per request</li>
-            <li>CORS: Enabled for all origins</li>
-            <li>Auth: None required</li>
-            <li>Token counts are <strong>approximations</strong> (~4 chars per token for English)</li>
-            <li>For <strong>exact token counts</strong>, use the <a href="/" style={{ color: "var(--accent)" }}>web calculator</a> which runs tiktoken WASM in-browser</li>
-            <li>Cache: Responses cached for 1 hour</li>
+            <li><strong style={{ color: "var(--text-primary)" }}>Payload Limit (POST):</strong> Maximum 100,000 characters per JSON request</li>
+            <li><strong style={{ color: "var(--text-primary)" }}>Payload Limit (GET):</strong> Maximum 10,000 characters via query strings</li>
+            <li><strong style={{ color: "var(--text-primary)" }}>CORS & Access:</strong> Configured allow-origin for all domains requests. No API Key required.</li>
+            <li><strong style={{ color: "var(--text-primary)" }}>Accuracy:</strong> Server-side API count is a rapid approximation based on the standard `~4 chars/token` metric. It parses split-words to supplement length metrics.</li>
+            <li><strong style={{ color: "var(--text-primary)" }}>100% Exact Matching:</strong> For byte-perfect encoding exactly matching OpenAI and Anthropic standards, utilize the <a href="/" style={{ color: "var(--accent)" }}>WASM web tokenizer</a> instead of the API.</li>
+            <li><strong style={{ color: "var(--text-primary)" }}>Error Handling:</strong> Standard REST HTTP Codes (400 Bad Request on missing \`text\` or oversized payload). Returns JSON with an \`error\` description.</li>
           </ul>
         </div>
       </section>

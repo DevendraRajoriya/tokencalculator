@@ -27,7 +27,7 @@ const BLOG_POSTS = [
     title: "How to Reduce GPT-4o API Costs by 60% (With Calculator)",
     description:
       "7 actionable techniques to slash your LLM API bills: shorter system prompts, prompt caching, model downgrading, batching, and more. Test each tip with our built-in calculator.",
-    date: "Coming soon",
+    date: "March 31, 2026",
     readTime: "6 min read",
     category: "Cost Saving",
     categoryColor: "var(--success)",
@@ -38,7 +38,7 @@ const BLOG_POSTS = [
     title: "GPT-4o vs Claude Sonnet 4.6: Real Cost & Token Comparison",
     description:
       "Side-by-side comparison of pricing, tokenization differences, context windows, speed, and use case fit. Which model gives you the best value in 2026?",
-    date: "Coming soon",
+    date: "March 31, 2026",
     readTime: "7 min read",
     category: "Comparison",
     categoryColor: "var(--accent)",
@@ -49,7 +49,7 @@ const BLOG_POSTS = [
     title: "LLM Context Window Comparison 2026 (Every Major Model)",
     description:
       "Complete comparison of context windows for all major AI models. What is a context window, why it matters, chunking strategies, and RAG implications.",
-    date: "Coming soon",
+    date: "March 31, 2026",
     readTime: "9 min read",
     category: "Guide",
     categoryColor: "var(--info)",
@@ -60,7 +60,7 @@ const BLOG_POSTS = [
     title: "10 Prompt Engineering Tricks to Cut Token Usage in Half",
     description:
       "Specific, testable prompt optimization tips. For each technique: see before/after token counts and verify the savings using our calculator.",
-    date: "Coming soon",
+    date: "March 31, 2026",
     readTime: "5 min read",
     category: "Tutorial",
     categoryColor: "var(--warning)",
@@ -71,7 +71,7 @@ const BLOG_POSTS = [
     title: "LLM Pricing Index — March 2026 (All Models, All Providers)",
     description:
       "Comprehensive monthly pricing data for every major LLM API. Input/output prices, context windows, and provider comparisons. The definitive pricing reference.",
-    date: "Coming soon",
+    date: "March 31, 2026",
     readTime: "4 min read",
     category: "Data",
     categoryColor: "var(--error)",
@@ -82,7 +82,7 @@ const BLOG_POSTS = [
     title: "DeepSeek vs GPT-4o vs Claude: Who Has the Cheapest API in 2026?",
     description:
       "Real cost analysis with 5 use case scenarios. Monthly cost breakdown for chatbots, RAG pipelines, summarizers, coding assistants, and more.",
-    date: "Coming soon",
+    date: "March 31, 2026",
     readTime: "7 min read",
     category: "Comparison",
     categoryColor: "var(--accent)",
@@ -114,7 +114,7 @@ export default function Blog() {
         </p>
       </section>
 
-      <section className="container container--narrow" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
+      <section className="container" style={{ marginBottom: "3rem", padding: "0 1.5rem" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {BLOG_POSTS.map((post) => {
             const isPublished = post.date !== "Coming soon";

@@ -4,8 +4,8 @@ import FAQ from "@/components/FAQ";
 export const metadata = {
   title: "LLaMA Token Calculator — Free Meta LLaMA 3.1 Token Counter & Cost Estimator",
   description:
-    "Free LLaMA token calculator. Count tokens, estimate API costs, and visualize tokenization for Meta LLaMA 3.1 70B in real time. Open-source model, multiple hosting options.",
-  keywords: ["LLaMA token calculator", "Meta LLaMA token counter", "LLaMA 3.1 tokens", "open source LLM token counter"],
+    "Free LLaMA token calculator with built-in tokenizer. Count tokens, estimate API costs, and visualize tokenization for Meta LLaMA 3.1 70B in real time. Open-source model, multiple hosting options.",
+  keywords: ["LLaMA token calculator", "Meta LLaMA token counter", "LLaMA tokenizer", "LLaMA 3.1 tokens", "open source LLM token counter", "tokenizer"],
   openGraph: {
     title: "LLaMA Token Calculator — Free Meta LLaMA Token Counter",
     description: "Count LLaMA 3.1 tokens, estimate API costs, and visualize tokenization in real time.",
@@ -23,7 +23,7 @@ export default function LlamaTokenCalculator() {
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free real-time token calculator for Meta's open-source LLaMA 3.1 70B model.",
+    description: "Free real-time LLaMA token calculator with tokenizer for Meta's open-source LLaMA 3.1 70B model.",
   };
 
   const breadcrumbSchema = {
@@ -51,7 +51,7 @@ export default function LlamaTokenCalculator() {
         </h1>
         <p className="hero__subtitle">
           Count tokens for Meta&apos;s open-source LLaMA 3.1 70B model.
-          Real-time counting, cost estimation, and visualization — 100% free.
+          Real-time token calculator with tokenizer, cost estimation, and visualization — 100% free.
         </p>
       </section>
 
@@ -60,7 +60,7 @@ export default function LlamaTokenCalculator() {
         relatedModelIds={["deepseek-v3", "gpt-4o-mini", "claude-3-haiku", "gemini-1.5-flash"]}
       />
 
-      <section className="container container--narrow" style={{ marginBottom: "2rem", padding: "0 1.5rem" }}>
+      <section className="container" style={{ marginBottom: "2rem", padding: "0 1.5rem" }}>
         <article style={{ maxWidth: "720px", margin: "0 auto" }}>
           <h2 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: "0.75rem" }}>
             LLaMA 3.1 Tokenization and Hosting Options

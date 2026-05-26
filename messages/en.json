@@ -1,0 +1,161 @@
+{
+  "nav": {
+    "calculator": "Calculator",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "api": "API"
+  },
+  "hero": {
+    "badge_free": "Free",
+    "badge_realtime": "Real-time",
+    "badge_private": "Private",
+    "title": "Free LLM Token",
+    "title_accent": "Calculator",
+    "subtitle_desktop": "Count tokens and estimate API costs for GPT-4o, Claude, Gemini, DeepSeek & LLaMA — instantly, privately, in your browser.",
+    "subtitle_mobile": "Count tokens & estimate API costs for 20+ AI models. Free, instant, private."
+  },
+  "calculator": {
+    "system_prompt_tab": "System Prompt",
+    "user_message_tab": "User Message",
+    "textarea_placeholder_system": "Enter system instructions here...",
+    "textarea_placeholder_user": "Start typing or paste your text here...",
+    "btn_clear": "Clear",
+    "btn_paste": "Paste",
+    "btn_example": "Example",
+    "stat_tokens": "Tokens",
+    "stat_words": "Words",
+    "stat_chars": "Chars",
+    "stat_input_cost": "Input Cost",
+    "context_label": "Context",
+    "output_est": "OUTPUT",
+    "output_est_label": "(EST)",
+    "input_label": "INPUT",
+    "total": "TOTAL",
+    "btn_copy_stats": "Copy Stats",
+    "btn_share_link": "Share Link",
+    "chars_label": "chars"
+  },
+  "visualizer": {
+    "title": "Token Visualizer",
+    "viewing": "Viewing",
+    "colored": "Colored",
+    "token_ids": "Token IDs",
+    "legend": "Legend:",
+    "legend_word": "Word",
+    "legend_punctuation": "Punctuation",
+    "legend_subword": "Subword",
+    "legend_space": "Space",
+    "legend_emoji": "Emoji",
+    "empty_state": "Type text to see tokens"
+  },
+  "projector": {
+    "title": "Monthly Cost Projector",
+    "requests_per_day": "Requests/day",
+    "avg_input_tokens": "Input tokens",
+    "avg_output_tokens": "Output tokens",
+    "model_col": "Model",
+    "monthly_cost_col": "Monthly cost",
+    "annual_cost_col": "Annual cost",
+    "best_value": "Best value for this usage",
+    "export_comparison": "Export comparison",
+    "updated_badge": "Updated {date}"
+  },
+  "pricing_table": {
+    "title": "LLM API Pricing per 1M Tokens",
+    "model_col": "Model",
+    "provider_col": "Provider",
+    "input_col": "Input / 1M",
+    "output_col": "Output / 1M",
+    "context_col": "Context"
+  },
+  "understanding": {
+    "title": "Understanding",
+    "title_accent": "Tokenization",
+    "intro": "This tool functions as a universal tokenizer for OpenAI, Anthropic, and Google models. We use official Tiktoken libraries and model-specific tokenizers for 99% accuracy in token counting.",
+    "bpe_title": "What is BPE (Byte-Pair Encoding)?",
+    "bpe_body": "BPE is the tokenization algorithm used by GPT models. It breaks text into subword units by iteratively merging the most frequent character pairs. For example, \"tokenization\" might become [\"token\", \"ization\"]. This allows models to handle rare words efficiently while keeping vocabulary size manageable.",
+    "context_title": "What is a Context Window?",
+    "context_body": "The context window is the maximum number of tokens an LLM can process in a single request (input + output combined). GPT-4o offers 128K tokens, Claude 3.5 supports 200K tokens, and Gemini 1.5 Pro supports up to 2M. Exceeding this limit will cause truncation or errors.",
+    "cached_title": "What is Cached Input Pricing?",
+    "cached_body": "Cached input pricing offers significant discounts (up to 90% off) when you reuse the same prompt prefix across API calls. This is ideal for system prompts, few-shot examples, or document analysis where the context remains constant while only the query changes.",
+    "io_title": "Input vs Output Token Costs",
+    "io_body": "Output tokens are typically 2-4x more expensive than input tokens because they require the model to perform autoregressive generation. To optimize costs, design prompts that elicit concise responses, use output length limits, and route simpler tasks to smaller models."
+  },
+  "word_to_token": {
+    "title": "Word-to-Token",
+    "title_accent": "Conversion Guide",
+    "subtitle": "Token counts vary significantly based on content type and language. Use this reference to estimate token usage before running your text through the calculator.",
+    "col_content_type": "Content Type",
+    "col_example": "Example",
+    "col_ratio": "Ratio",
+    "col_1000_words": "1000 Words ≈",
+    "col_notes": "Notes",
+    "row_english": "English Text",
+    "row_code": "Code (Python/JS)",
+    "row_chinese": "Chinese/Japanese",
+    "row_technical": "Technical Writing",
+    "row_json": "JSON/XML Data"
+  },
+  "how_it_works": {
+    "title": "How It Works",
+    "step1_title": "Paste your text",
+    "step1_desc": "Type or paste any text — a system prompt, user message, or full conversation. The calculator tokenizes in real time as you type.",
+    "step2_title": "Select your model",
+    "step2_desc": "Choose from GPT-4o, Claude, Gemini, DeepSeek and 20+ models. Each uses a different tokenizer — the same text can cost 2× more on different models.",
+    "step3_title": "See tokens + cost",
+    "step3_desc": "Instantly see exact token count, estimated API cost, and how close you are to the context window limit. No signup, no API key required."
+  },
+  "seo_content": {
+    "title": "How Does AI Token Counting Work?",
+    "p1": "AI models like GPT-4o, Claude, and Gemini don't read text the way humans do. Instead, they break text into tokens — small chunks that can be whole words, word pieces, or even individual characters.",
+    "p2": "This matters because API pricing is based on token count, not word count. Our token calculator uses the same tiktoken library that OpenAI uses internally, running entirely in your browser via WebAssembly — so your text is never sent to any server.",
+    "p3": "Use the Token Visualizer above to see exactly how your text is split into tokens. Each colored chip represents one token — tap or hover over any chip to see its token ID."
+  },
+  "model_pages": {
+    "openai": {
+      "page_title": "OpenAI Token Calculator",
+      "page_subtitle": "Count ChatGPT and OpenAI tokens with an accurate tokenizer. Real-time counting, cost estimation, and token visualization — 100% free.",
+      "compare_section_title": "Compare OpenAI Pricing",
+      "how_it_works_title": "How OpenAI Tokenizer Works"
+    },
+    "claude": {
+      "page_title": "Claude Token Calculator",
+      "page_subtitle": "Count tokens for Anthropic Claude Sonnet 4.6, Opus 4.6, and Haiku. Real-time counting, cost estimation, and token visualization — 100% free.",
+      "compare_section_title": "Compare Claude Pricing",
+      "how_it_works_title": "How Claude Tokenization Works"
+    },
+    "gemini": {
+      "page_title": "Gemini Token Calculator",
+      "page_subtitle": "Count tokens for Google Gemini 2.5 Pro, Flash, and all Gemini models. Real-time counting, cost estimation — 100% free.",
+      "compare_section_title": "Compare Gemini Pricing",
+      "how_it_works_title": "How Gemini Tokenization Works"
+    },
+    "deepseek": {
+      "page_title": "DeepSeek Token Calculator",
+      "page_subtitle": "Count tokens for DeepSeek V3 and R1. One of the most cost-effective LLMs. Real-time token counting — 100% free.",
+      "compare_section_title": "Compare DeepSeek Pricing",
+      "how_it_works_title": "How DeepSeek Tokenization Works"
+    }
+  },
+  "footer": {
+    "tagline": "Built by devs, for devs.",
+    "tools_title": "Tools",
+    "resources_title": "Resources",
+    "connect_title": "Connect",
+    "link_token_calculator": "Token Calculator",
+    "link_gpt_calculator": "GPT Calculator",
+    "link_claude_calculator": "Claude Calculator",
+    "link_gemini_calculator": "Gemini Calculator",
+    "link_pricing": "Pricing Comparison",
+    "link_blog": "Blog",
+    "link_api_docs": "API Docs",
+    "link_about": "About",
+    "copyright": "© {year} tokencalculator.app",
+    "prices_updated": "Prices updated: {date}",
+    "made_with_love": "Made with ♥ in India"
+  },
+  "faq": {
+    "title": "Common Questions",
+    "search_placeholder": "Search questions..."
+  }
+}

@@ -37,6 +37,8 @@ Token Calculator lets you count tokens, estimate API costs, and visualize how te
 ## Pages
 
 - / — Token calculator tool (homepage)
+- /de — German token calculator (Token Rechner)
+- /fr — French token calculator (Calculateur de Tokens)
 - /gpt-token-calculator — GPT-4o specific token calculator with o200k_base encoding
 - /claude-token-calculator — Claude Sonnet 4.6 token calculator
 - /gemini-token-calculator — Gemini 1.5 Pro token calculator (2M context window)
@@ -45,6 +47,12 @@ Token Calculator lets you count tokens, estimate API costs, and visualize how te
 - /llm-pricing-comparison — Full LLM API pricing comparison table (sorted by cost)
 - /blog — Articles about tokenization, pricing, and prompt optimization
 - /blog/what-is-a-token-in-ai — Complete guide: What is a token in AI? (2026)
+- /blog/reduce-llm-api-costs — How to Reduce GPT-4o API Costs by 60%
+- /blog/gpt4o-vs-claude-cost — GPT-4o vs Claude Sonnet 4.6: Real Cost Comparison
+- /blog/context-window-guide — LLM Context Window Comparison 2026
+- /blog/prompt-token-tips — 10 Prompt Engineering Tricks to Cut Token Usage
+- /blog/llm-pricing-index-march-2026 — LLM Pricing Index: March 2026 (All Models)
+- /blog/deepseek-vs-gpt4o — DeepSeek vs GPT-4o vs Claude: Who Has the Cheapest API?
 - /api/docs — Free token counting API documentation
 - /api/count-tokens — REST API endpoint for token counting (GET, no auth required)
 - /about — About page, privacy policy, accuracy information

@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "calculator": "計算機",
+    "pricing": "料金",
+    "blog": "ブログ",
+    "api": "API"
+  },
+  "hero": {
+    "badge_free": "無料",
+    "badge_realtime": "リアルタイム",
+    "badge_private": "プライベート",
+    "title": "無料LLMトークン",
+    "title_accent": "計算機",
+    "subtitle_desktop": "GPT-4o、Claude、Gemini、DeepSeek、LLaMAのトークン数とAPIコストをリアルタイムで計算。ブラウザで即座に、プライベートに。",
+    "subtitle_mobile": "20以上のAIモデルのトークン数とAPIコストを計算。無料・即時・プライベート。"
+  },
+  "calculator": {
+    "system_prompt_tab": "システムプロンプト",
+    "user_message_tab": "ユーザーメッセージ",
+    "textarea_placeholder_system": "システム指示をここに入力...",
+    "textarea_placeholder_user": "テキストを入力または貼り付けてトークンをリアルタイムで計算...",
+    "btn_clear": "クリア",
+    "btn_paste": "貼り付け",
+    "btn_example": "例を見る",
+    "stat_tokens": "トークン",
+    "stat_words": "単語",
+    "stat_chars": "文字",
+    "stat_input_cost": "入力コスト",
+    "context_label": "コンテキスト",
+    "output_est": "出力",
+    "output_est_label": "（推定）",
+    "input_label": "入力",
+    "total": "合計",
+    "btn_copy_stats": "統計をコピー",
+    "btn_share_link": "リンクを共有",
+    "chars_label": "文字"
+  },
+  "visualizer": {
+    "title": "トークンビジュアライザー",
+    "viewing": "表示中",
+    "colored": "カラー",
+    "token_ids": "トークンID",
+    "legend": "凡例:",
+    "legend_word": "単語",
+    "legend_punctuation": "句読点",
+    "legend_subword": "サブワード",
+    "legend_space": "スペース",
+    "legend_emoji": "絵文字",
+    "empty_state": "テキストを入力してトークンを表示"
+  },
+  "projector": {
+    "title": "月額コストプロジェクター",
+    "requests_per_day": "リクエスト/日",
+    "avg_input_tokens": "入力トークン",
+    "avg_output_tokens": "出力トークン",
+    "model_col": "モデル",
+    "monthly_cost_col": "月額コスト",
+    "annual_cost_col": "年間コスト",
+    "best_value": "この使用量での最適値",
+    "export_comparison": "比較をエクスポート",
+    "updated_badge": "更新日 {date}"
+  },
+  "pricing_table": {
+    "title": "LLM API料金",
+    "title_accent": "（1Mトークンあたり）",
+    "model_col": "モデル",
+    "provider_col": "プロバイダー",
+    "input_col": "入力 / 1M",
+    "output_col": "出力 / 1M",
+    "context_col": "コンテキスト"
+  },
+  "understanding": {
+    "title": "トークナイゼーションを",
+    "title_accent": "理解する",
+    "intro": "このツールはOpenAI、Anthropic、Googleモデル向けのユニバーサルトークナイザーです。公式のTiktokenライブラリを使用し、99%の精度でトークンをカウントします。",
+    "bpe_title": "BPE（バイトペアエンコーディング）とは？",
+    "bpe_body": "BPEはGPTモデルで使用されるトークナイゼーションアルゴリズムです。最も頻出する文字ペアを反復的にマージしてテキストをサブワード単位に分割します。",
+    "context_title": "コンテキストウィンドウとは？",
+    "context_body": "コンテキストウィンドウは、LLMが1回のリクエストで処理できる最大トークン数です。GPT-4oは128K、Claude 3.5は200K、Gemini 1.5 Proは最大2Mをサポートします。",
+    "cached_title": "キャッシュ入力価格とは？",
+    "cached_body": "キャッシュ入力価格は、同じプロンプトプレフィックスをAPIコール間で再利用する場合に最大90%の割引を提供します。",
+    "io_title": "入力 vs 出力トークンコスト",
+    "io_body": "出力トークンは通常、入力トークンの2-4倍高価です。コストを最適化するには、簡潔な応答を引き出すプロンプトを設計してください。"
+  },
+  "word_to_token": {
+    "title": "ワードからトークンへの",
+    "title_accent": "変換ガイド",
+    "subtitle": "トークン数はコンテンツの種類と言語によって大きく異なります。この参考資料を使って、テキストをカリキュレーターに通す前にトークン使用量を見積もってください。",
+    "col_content_type": "コンテンツタイプ",
+    "col_example": "例",
+    "col_ratio": "比率",
+    "col_1000_words": "1000語 ≈",
+    "col_notes": "備考",
+    "row_english": "英語テキスト",
+    "row_code": "コード（Python/JS）",
+    "row_chinese": "中国語/日本語",
+    "row_technical": "技術文書",
+    "row_json": "JSON/XMLデータ"
+  },
+  "how_it_works": {
+    "title": "",
+    "title_accent": "使い方",
+    "step1_title": "テキストを貼り付ける",
+    "step1_desc": "テキストを入力または貼り付けてください。計算機がリアルタイムでトークナイズします。",
+    "step2_title": "モデルを選択する",
+    "step2_desc": "GPT-4o、Claude、Gemini、DeepSeekなど20以上のモデルから選択。同じテキストでもモデルによってコストが2倍異なることがあります。",
+    "step3_title": "トークン+コストを確認",
+    "step3_desc": "トークン数、APIコスト推定、コンテキストウィンドウの使用率を即座に確認。サインアップ不要。"
+  },
+  "seo_content": {
+    "title": "AIトークンカウントの",
+    "title_accent": "仕組み",
+    "p1": "GPT-4o、Claude、GeminiなどのAIモデルは、人間のようにテキストを読みません。代わりにトークンに分割します。",
+    "p2": "APIの価格はトークン数に基づいているため、これは重要です。当ツールはWebAssemblyを使用してブラウザ内で完全に動作します。",
+    "p3": "トークンビジュアライザーを使用して、テキストがどのようにトークンに分割されるかを確認してください。"
+  },
+  "model_pages": {
+    "openai": {
+      "page_title": "OpenAI トークン計算機",
+      "page_subtitle": "ChatGPTとOpenAIのトークンを正確なトークナイザーで計算。リアルタイムのカウント、コスト推定、トークン可視化 — 100%無料。",
+      "compare_section_title": "OpenAI料金の比較",
+      "how_it_works_title": "OpenAIトークナイゼーションの仕組み"
+    },
+    "claude": {
+      "page_title": "Claude トークン計算機",
+      "page_subtitle": "Anthropic Claude Sonnet 4.6、Opus 4.6、Haikuのトークンを計算。100%無料。",
+      "compare_section_title": "Claude料金の比較",
+      "how_it_works_title": "Claudeトークナイゼーションの仕組み"
+    },
+    "gemini": {
+      "page_title": "Gemini トークン計算機",
+      "page_subtitle": "Google Gemini 2.5 ProとすべてのGeminiモデルのトークンを計算 — 100%無料。",
+      "compare_section_title": "Gemini料金の比較",
+      "how_it_works_title": "Geminiトークナイゼーションの仕組み"
+    },
+    "deepseek": {
+      "page_title": "DeepSeek トークン計算機",
+      "page_subtitle": "DeepSeek V3とR1のトークンを計算。最もコスパの良いLLM — 100%無料。",
+      "compare_section_title": "DeepSeek料金の比較",
+      "how_it_works_title": "DeepSeekトークナイゼーションの仕組み"
+    }
+  },
+  "footer": {
+    "tagline": "開発者によって、開発者のために。",
+    "tools_title": "ツール",
+    "resources_title": "リソース",
+    "connect_title": "つながる",
+    "link_token_calculator": "トークン計算機",
+    "link_gpt_calculator": "GPT計算機",
+    "link_claude_calculator": "Claude計算機",
+    "link_gemini_calculator": "Gemini計算機",
+    "link_pricing": "料金比較",
+    "link_blog": "ブログ",
+    "link_api_docs": "APIドキュメント",
+    "link_about": "概要",
+    "copyright": "© {year} tokencalculator.app",
+    "prices_updated": "価格更新日: {date}",
+    "made_with_love": "インドで♥を込めて"
+  },
+  "faq": {
+    "title": "よくある質問",
+    "search_placeholder": "質問を検索..."
+  }
+}
