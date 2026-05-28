@@ -5,6 +5,7 @@ export default function robots() {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://tokencalculator.vercel.app/sitemap.xml',
+    sitemap: 'https://www.tokencalculator.app/sitemap.xml',
+    Host: 'www.tokencalculator.app' ,
   }
 }
