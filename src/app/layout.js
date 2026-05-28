@@ -25,6 +25,19 @@ export const metadata = {
     "OpenAI tokenizer alternative",
   ],
   authors: [{ name: "Token Calculator" }],
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "manifest", url: "/site.webmanifest" },
+    ],
+  },
   openGraph: {
     title: "Token Calculator — Free LLM Token Counter for GPT, Claude & Gemini",
     description:
@@ -115,9 +128,14 @@ function Footer() {
         {/* Brand Column — spans full width on mobile */}
         <div className="footer__brand">
           <a href="/" className="footer__logo-link">
-            <div className="footer__logo-bracket">
-              [<span style={{ color: 'var(--accent)' }}>42</span>]
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/icon.png"
+              alt="Token Calculator logo"
+              width={36}
+              height={36}
+              style={{ borderRadius: '8px', display: 'block', flexShrink: 0 }}
+            />
             <div className="footer__logo-name">
               <span style={{ fontWeight: 400, color: 'var(--text-secondary)' }}>token</span>
               <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>calculator.app</span>

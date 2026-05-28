@@ -58,10 +58,15 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__inner">
-        <a href="/" className="header__logo" style={{ gap: '0.75rem' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', color: 'var(--text-secondary)' }}>
-            [<span style={{ color: 'var(--accent)' }}>TC</span>]
-          </div>
+        <a href="/" className="header__logo" style={{ gap: '0.5rem' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/icon.png"
+            alt="Token Calculator logo"
+            width={32}
+            height={32}
+            style={{ borderRadius: '6px', display: 'block', flexShrink: 0 }}
+          />
           <div style={{ display: 'flex' }}>
             <span style={{ fontWeight: 400, color: 'var(--text-tertiary)' }}>token</span>
             <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>calculator</span>

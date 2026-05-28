@@ -10,7 +10,7 @@ export default function Home() {
     "@type": "HowTo",
     name: "How to Count Tokens in AI Models",
     description:
-      "Count tokens for any AI model (GPT-4o, Claude, Gemini) in real time using our free token calculator.",
+      "Count tokens for any AI model (ChatGPT, Claude, Gemini) in real time using our free token calculator.",
     step: [
       {
         "@type": "HowToStep",

@@ -48,3 +48,10 @@ build_log.txt
 eslint-report.json
 redesign.md
 updatedes.md
+
+eslint.txt
+eslint_clean.txt
+fix.js
+fix_langs.js
+fix_widths.js
+lint.txt
