@@ -140,15 +140,15 @@ export default function APIDocs() {
             lineHeight: 1.6, color: "var(--text-secondary)",
           }}>
 {`# 1. GET Request (For small payloads)
-curl "https://tokencalculator.vercel.app/api/count-tokens?text=Hello%20world&model=gpt-4o"
+curl "https://www.tokencalculator.app/api/count-tokens?text=Hello%20world&model=gpt-4o"
 
 # 2. POST Request (Recommended for code / large docs)
-curl -X POST "https://tokencalculator.vercel.app/api/count-tokens" \\
+curl -X POST "https://www.tokencalculator.app/api/count-tokens" \\
      -H "Content-Type: application/json" \\
      -d '{"text": "def compute_loss(): pass", "model": "gpt-4o"}'
 
 # JavaScript / Node.js
-fetch('https://tokencalculator.vercel.app/api/count-tokens', {
+fetch('https://www.tokencalculator.app/api/count-tokens', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ text: 'Hello world', model: 'gpt-4o' })
@@ -159,7 +159,7 @@ fetch('https://tokencalculator.vercel.app/api/count-tokens', {
 # Python
 import requests
 resp = requests.post(
-  'https://tokencalculator.vercel.app/api/count-tokens',
+  'https://www.tokencalculator.app/api/count-tokens',
   json={'text': 'Hello world', 'model': 'gpt-4o'}
 )
 print(resp.json())`}
