@@ -33,6 +33,20 @@ export async function GET() {
   const today = new Date().toISOString().split("T")[0];
   const entries = [];
 
+  // Build hreflang alternates for all locale homepage variants
+  const buildHreflangs = () => {
+    const links = [
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}" />`,
+      ...LOCALES.map((l) => {
+        const lPrefix = l === "en" ? "" : `/${l}`;
+        const hreflang = l === "pt-br" ? "pt-BR" : l;
+        return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${baseUrl}${lPrefix}" />`;
+      }),
+    ];
+    return links.join("\n");
+  };
+
+  // Locale homepage entries (each gets full hreflang set)
   // Homepage — has actual locale variants
   const homepageHreflangs = LOCALES.map((l) => {
     const lPrefix = l === "en" ? "" : `/${l}`;
@@ -44,6 +58,15 @@ export async function GET() {
     const prefix = locale === "en" ? "" : `/${locale}`;
     const fullUrl = `${baseUrl}${prefix}`;
     const priority = locale === "en" ? "1.0" : "0.8";
+    entries.push(
+      `  <url>\n` +
+      `    <loc>${fullUrl}</loc>\n` +
+      `    <changefreq>daily</changefreq>\n` +
+      `    <priority>${priority}</priority>\n` +
+      `    <lastmod>${today}</lastmod>\n` +
+      `${buildHreflangs()}\n` +
+      `  </url>`
+    );
     entries.push(`  <url>
     <loc>${fullUrl}</loc>
     <changefreq>daily</changefreq>
@@ -56,6 +79,14 @@ ${homepageHreflangs}
 
   // English-only pages (no locale sub-pages)
   for (const page of EN_ONLY_PAGES) {
+    entries.push(
+      `  <url>\n` +
+      `    <loc>${baseUrl}${page.url}</loc>\n` +
+      `    <changefreq>${page.changefreq}</changefreq>\n` +
+      `    <priority>${page.priority}</priority>\n` +
+      `    <lastmod>${today}</lastmod>\n` +
+      `  </url>`
+    );
     entries.push(`  <url>
     <loc>${baseUrl}${page.url}</loc>
     <changefreq>${page.changefreq}</changefreq>
@@ -64,11 +95,12 @@ ${homepageHreflangs}
   </url>`);
   }
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${entries.join("\n")}
-</urlset>`;
+  const sitemap =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
+    `        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+    entries.join("\n") + "\n" +
+    `</urlset>`;
 
   return new Response(sitemap, {
     headers: {
@@ -77,3 +109,4 @@ ${entries.join("\n")}
     },
   });
 }
+

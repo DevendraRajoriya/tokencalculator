@@ -988,26 +988,65 @@ main {
   max-height: 400px;
   resize: none;
   box-sizing: border-box;
-  padding: 16px;
+  padding: 14px 16px;
   font-family: var(--font-mono);
   font-size: 14px;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-secondary);
-  border: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  margin: 8px 12px 0;
+  width: calc(100% - 24px);
   outline: none;
-  transition: background-color 0.15s ease;
+  transition: border-color 0.2s ease, background-color 0.15s ease;
   caret-color: var(--accent);
 }
 
 .calculator__textarea:focus {
   background: var(--bg-elevated);
+  border-color: rgba(255, 72, 0, 0.45);
+  box-shadow: 0 0 0 3px rgba(255, 72, 0, 0.08);
 }
 
 .calculator__textarea::placeholder {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   font-family: var(--font-sans);
   font-style: italic;
+  opacity: 0.7;
+}
+
+/* ── Light theme overrides for calculator UI ── */
+[data-theme="light"] .calculator__card {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.07) inset, 0 2px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .calculator__textarea {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .calculator__textarea:focus {
+  background: #fafaf8;
+  border-color: rgba(255, 72, 0, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 72, 0, 0.10);
+}
+
+[data-theme="light"] .calculator__textarea::placeholder {
+  color: #9b9891;
+  opacity: 0.85;
+}
+
+[data-theme="light"] .stat-item__value--accent {
+  color: #e03d00;
+}
+
+[data-theme="light"] .stats-bar {
+  background: #f7f6f3;
+}
+
+[data-theme="light"] .stat-item {
+  background: #f7f6f3;
 }
 
 .textarea-actions {
@@ -1046,6 +1085,67 @@ main {
   border-color: var(--border-strong);
   color: var(--text-primary);
   background: var(--bg-tertiary);
+}
+
+/* Quick-Load Preset Tags */
+.preset-tags__label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  align-self: center;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+
+.preset-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  font-size: 11.5px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.preset-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255, 72, 0, 0.06);
+  box-shadow: 0 0 0 2px rgba(255, 72, 0, 0.08);
+}
+
+.preset-tag__icon {
+  font-size: 12px;
+  line-height: 1;
+  display: inline-block;
+}
+
+[data-theme="light"] .preset-tag:hover {
+  background: rgba(255, 72, 0, 0.05);
+  border-color: rgba(255, 72, 0, 0.7);
+}
+
+/* On mobile, let the preset row scroll horizontally rather than wrapping */
+@media (max-width: 600px) {
+  .textarea-actions-left {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .textarea-actions-left::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .char-counter {
@@ -1097,9 +1197,9 @@ main {
 }
 
 .stat-item__value {
-  font-family: var(--font-mono);
-  font-size: 26px;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
   color: var(--text-primary);
   line-height: 1;
   letter-spacing: -0.5px;
@@ -1107,8 +1207,9 @@ main {
 
 .stat-item__value--accent {
   color: #ff4800;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
+  font-family: var(--font-display);
   text-shadow: none;
   filter: none;
   -webkit-font-smoothing: antialiased;
@@ -2639,6 +2740,248 @@ input[type="range"]::-moz-range-progress {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   MOBILE OPTIMIZATION — New Components (2026)
+   Covers: I/O Ratio slider, preset tags,
+   bottom-row stacking, calc-row single col
+   ============================================ */
+
+/* ── Tablet (≤ 900px) ── */
+@media (max-width: 900px) {
+  /* Calculator bottom row: stack context + cost */
+  .calculator__bottom-row {
+    flex-direction: column;
+    gap: 14px;
+    padding: 12px 16px 14px;
+  }
+
+  .context-section {
+    width: 100%;
+  }
+
+  .cost-breakdown {
+    text-align: left;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 20px;
+    align-items: flex-end;
+  }
+
+  .cost-breakdown__line {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    gap: 6px;
+  }
+
+  .cost-breakdown__line--total {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  /* Side-by-side calc row collapses */
+  .model-calc-row {
+    height: auto;
+  }
+
+  .model-calc-row__calculator,
+  .model-calc-row__visualizer {
+    height: 400px;
+  }
+}
+
+/* ── Phone (≤ 600px) ── */
+@media (max-width: 600px) {
+  /* I/O Ratio slider: full-width, comfortable spacing */
+  .context-section > div:last-child {
+    margin-top: 12px !important;
+  }
+
+  /* Preset tags: larger tap targets */
+  .preset-tag {
+    padding: 7px 11px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  .preset-tags__label {
+    display: none; /* Save horizontal space on phone */
+  }
+
+  /* Textarea: comfortable mobile height */
+  .calculator__textarea {
+    min-height: 130px;
+    max-height: 220px;
+    margin: 6px 8px 0;
+    width: calc(100% - 16px);
+    font-size: 15px; /* Prevent iOS auto-zoom */
+  }
+
+  /* Textarea actions: wrap at phone width */
+  .textarea-actions {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+
+  .textarea-action-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Calculator bottom row fully stacked */
+  .calculator__bottom-row {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 12px 14px;
+  }
+
+  /* Cost breakdown: full width horizontal on phone */
+  .cost-breakdown {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 12px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .cost-breakdown__line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    justify-content: flex-start;
+  }
+
+  .cost-breakdown__line--total {
+    align-items: flex-end;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    width: auto;
+  }
+
+  .cost-breakdown__line--total .cost-breakdown__value {
+    font-size: 18px;
+  }
+
+  /* Model calc row: shorter on phone */
+  .model-calc-row__calculator,
+  .model-calc-row__visualizer {
+    height: 340px;
+  }
+
+  /* Tab buttons: scrollable row */
+  .tabs-row {
+    gap: 6px;
+    padding: 6px 12px;
+  }
+
+  .tab-btn {
+    padding: 7px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Stats bar: 2x2 tighter */
+  .stats-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-item {
+    padding: 12px 10px;
+  }
+
+  .stat-item__value {
+    font-size: 22px;
+  }
+
+  .stat-item__value--accent {
+    font-size: 26px;
+  }
+
+  /* Main page padding */
+  main {
+    padding: 0 10px;
+  }
+
+  /* Model selector cards: 2 column grid */
+  .model-selector {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 10px 12px 8px;
+  }
+
+  .model-card {
+    padding: 7px 10px;
+    min-height: 46px;
+  }
+
+  .model-card__name {
+    font-size: 12px;
+  }
+
+  .model-card__provider {
+    font-size: 9px;
+  }
+
+  /* Calculator card: edge-to-edge on phone */
+  .calculator__card {
+    border-radius: 10px;
+  }
+
+  /* Hero section */
+  .hero {
+    padding: 20px 12px 14px;
+  }
+
+  /* Momentum scroll on all scroll containers */
+  .tabs-row,
+  .textarea-actions-left,
+  .model-selector,
+  .visualizer__scroll-area {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ── Small phone (≤ 390px) ── */
+@media (max-width: 390px) {
+  .stat-item__value {
+    font-size: 18px;
+  }
+
+  .stat-item__value--accent {
+    font-size: 22px;
+  }
+
+  .stat-item {
+    padding: 10px 8px;
+  }
+
+  .cost-breakdown__line--total .cost-breakdown__value {
+    font-size: 15px;
+  }
+
+  .model-card__name {
+    font-size: 11px;
+  }
+
+  .preset-tag {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  .hero__title {
+    font-size: 1.6rem !important;
   }
 }
 

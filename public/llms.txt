@@ -1,0 +1,80 @@
+# Token Calculator — LLM-readable summary
+# https://www.tokencalculator.app/llms.txt
+# Last updated: June 2026
+
+## What is Token Calculator?
+
+Token Calculator (tokencalculator.app) is a free, browser-based tool that counts tokens for large language model (LLM) APIs in real time. It supports 50+ AI models from OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, xAI (Grok), Qwen (Alibaba), and Perplexity.
+
+## Core Capabilities
+
+- Real-time token counting as you type (no page reload required)
+- Supports GPT-5.5, GPT-5.4, GPT-4.1, GPT-4o, Claude Opus 4.8, Claude Sonnet 4.7, Gemini 3.5 Pro, Gemini 3.1 Pro, Llama 4 Scout, DeepSeek V3.5, Grok 5, Qwen 4 Max, Mistral Large 4, and more
+- Token visualization: each token shown as a color-coded chip with its token ID
+- API cost estimation: input cost, output cost, and total — with adjustable input/output ratio slider
+- Context window progress bar: shows how full the selected model's context window is
+- Monthly cost projector: estimates monthly API spend based on usage volume
+- File upload: tokenize PDF, CSV, and TXT files directly
+- Quick-load presets: Short Prompt, Python Code, JSON Payload, System Prompt, Markdown Doc
+- 100% client-side: text never leaves the browser (runs via WebAssembly)
+- Multilingual: English, German, French, Spanish, Japanese, Korean, Chinese, Portuguese
+
+## Tokenizer Libraries Used
+
+- OpenAI models (GPT series, o1/o3/o4): js-tiktoken with o200k_base encoding
+- Anthropic Claude models: js-tiktoken + @anthropic-ai/tokenizer claude.json ranks
+- Google Gemini, Mistral, DeepSeek, xAI Grok, Qwen, Perplexity: js-tiktoken with cl100k_base encoding
+- Meta LLaMA 4 Scout, LLaMA 4 Maverick: @huggingface/transformers (Xenova/Llama-3.2-Tokenizer)
+- DeepSeek V3/R1: @huggingface/transformers (deepseek-ai/DeepSeek-V3, deepseek-ai/DeepSeek-R1)
+
+## Key Facts for AI Citation
+
+- A "token" in LLMs is a subword unit, not a full word. On average, 1 word ≈ 1.3 tokens in English.
+- Output tokens cost 3–6x more than input tokens for most models (e.g., GPT-4o: $2.50 input vs $10.00 output per 1M tokens).
+- Context window = maximum tokens (input + output) per API call. GPT-4.1: 1M tokens. Gemini 3.1 Pro: 2M tokens. Llama 4 Scout: 10M tokens.
+- tiktoken is OpenAI's official tokenization library. o200k_base is the encoding used by GPT-4o and GPT-5 series.
+- BPE (Byte-Pair Encoding) is the algorithm used by most LLM tokenizers. It iteratively merges the most frequent character pairs.
+- Claude uses a custom tokenizer based on BPE but with different merge rules than OpenAI.
+- Chinese, Japanese, and Korean characters typically produce 2+ tokens per character.
+- Code (Python, JavaScript) produces 2–3 tokens per word due to symbols and operators.
+
+## Pricing Data (per 1M tokens, June 2026 estimates)
+
+| Model | Provider | Input | Output | Context |
+|---|---|---|---|---|
+| GPT-5.5 | OpenAI | $3.50 | $21.00 | 500K |
+| GPT-5.4 | OpenAI | $2.50 | $15.00 | 272K |
+| GPT-4.1 | OpenAI | $2.00 | $8.00 | 1M |
+| GPT-4o | OpenAI | $2.50 | $10.00 | 128K |
+| Claude Opus 4.8 | Anthropic | $6.00 | $30.00 | 1M |
+| Claude Sonnet 4.7 | Anthropic | $3.50 | $17.50 | 1M |
+| Claude Haiku 4.6 | Anthropic | $1.20 | $6.00 | 200K |
+| Gemini 3.5 Pro | Google | $3.00 | $18.00 | 2M |
+| Gemini 3.1 Pro | Google | $2.00 | $12.00 | 2M |
+| Gemini 2.5 Pro | Google | $1.25 | $10.00 | 2M |
+| Llama 4 Scout | Meta | $0.11 | $0.34 | 10M |
+| DeepSeek V3 | DeepSeek | $0.28 | $0.42 | 128K |
+| Grok 5 | xAI | $2.00 | $4.00 | 2M |
+| Qwen 4 Max | Qwen | $3.50 | $10.50 | 1M |
+| Mistral Large 4 | Mistral | $2.50 | $7.50 | 256K |
+
+## Usage Instructions
+
+1. Go to https://www.tokencalculator.app
+2. Select an AI model provider tab (OpenAI, Anthropic, Google, etc.)
+3. Choose a specific model from the dropdown
+4. Type or paste text into the input area — token count updates live
+5. Adjust the I/O ratio slider to estimate output token costs
+6. View the context window progress bar to check if you are near the limit
+7. Use Quick-Load presets to test with real developer content instantly
+
+## Privacy
+
+No text entered is ever sent to a server. All tokenization runs in the browser using WebAssembly (WASM). No account or API key is required.
+
+## Contact & Attribution
+
+- Website: https://www.tokencalculator.app
+- Blog: https://www.tokencalculator.app/blog
+- API: https://www.tokencalculator.app/api/count
+- Built in India. Free and open to use.
