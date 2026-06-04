@@ -16,7 +16,7 @@ import Papa from "papaparse";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CostProjector from "./CostProjector";
-import ProviderCostCards from "./ProviderCostCards";
+
 
 // Group models by provider
 const PROVIDERS = [
@@ -47,6 +47,8 @@ export default function TokenCalculator() {
   const [tokens, setTokens] = useState([]);
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
+  // Output ratio: % of input tokens assumed as output (0–100). Default 30%.
+  const [outputRatio, setOutputRatio] = useState(30);
 
   const [visualizerView, setVisualizerView] = useState("colored");
   const [isDragging, setIsDragging] = useState(false);
@@ -59,7 +61,7 @@ export default function TokenCalculator() {
   const selectedModel = getModelById(selectedModelId);
 
   const inputCost = calculateCost(tokenCount, selectedModel, "input");
-  const outputTokensCount = Math.floor(tokenCount * 0.5);
+  const outputTokensCount = Math.floor(tokenCount * (outputRatio / 100));
   const outputCost = calculateCost(outputTokensCount, selectedModel, "output");
   const totalCost = inputCost + outputCost;
 
@@ -442,7 +444,7 @@ export default function TokenCalculator() {
                   onChange={handleFileInputChange}
                 />
                 <button className="textarea-action-btn" onClick={() => fileInputRef.current?.click()} aria-label="Upload file">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>
                   Upload
                 </button>
               </div>
@@ -479,10 +481,39 @@ export default function TokenCalculator() {
                 <div className={`context-bar__fill ${contextPercent > 90 ? 'context-bar__fill--danger' : contextPercent > 70 ? 'context-bar__fill--warning' : ''}`} style={{ width: `${contextPercent}%` }} />
               </div>
               <div className="context-bar__label">
-                <span>Context: <span style={{ color: 'var(--text-primary)' }}>{formatNumber(tokenCount)}</span> / {formatNumber(selectedModel.contextWindow)} tokens</span>
+                <span>Context: <span style={{ color: 'var(--text-primary)' }}>{formatNumber(tokenCount)}</span> / <span title={`${selectedModel.name} context window`}>{formatNumber(selectedModel.contextWindow)}</span> tokens</span>
                 <span className="context-bar__pct">({contextPercent.toFixed(1)}%)</span>
               </div>
+
+              {/* Input / Output ratio slider */}
+              <div style={{ marginTop: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+                  <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-tertiary)' }}>I/O Ratio</span>
+                  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                    <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--green)', background: 'rgba(0,196,125,0.1)', padding: '1px 5px', borderRadius: '3px' }}>IN {100 - outputRatio}%</span>
+                    <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>/</span>
+                    <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--accent)', background: 'rgba(255,72,0,0.1)', padding: '1px 5px', borderRadius: '3px' }}>OUT {outputRatio}%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  step={5}
+                  value={outputRatio}
+                  onChange={e => setOutputRatio(Number(e.target.value))}
+                  style={{ '--fill-pct': `${outputRatio}%`, width: '100%' }}
+                  aria-label="Output token ratio"
+                  title={`Output tokens = ${outputRatio}% of input tokens (${outputTokensCount.toLocaleString()} tokens)`}
+                />
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginTop: '2px' }}>
+                  <span>0% out</span>
+                  <span style={{ color: 'var(--text-tertiary)' }}>{outputTokensCount.toLocaleString()} output tokens</span>
+                  <span>100% out</span>
+                </div>
+              </div>
             </div>
+
             <div className="cost-breakdown">
               <div className="cost-breakdown__line">
                 <span className="cost-breakdown__label">INPUT</span>
@@ -490,7 +521,7 @@ export default function TokenCalculator() {
               </div>
               <div className="cost-breakdown__line">
                 <span className="cost-breakdown__label">OUTPUT</span>
-                <span className="cost-breakdown__value">+{outputCost > 0 ? `$${outputCost.toFixed(5)}` : '$0.0000'} (EST)</span>
+                <span className="cost-breakdown__value" title={`Based on ${outputRatio}% output ratio`}>+{outputCost > 0 ? `$${outputCost.toFixed(5)}` : '$0.0000'}</span>
               </div>
               <div className="cost-breakdown__line cost-breakdown__line--total">
                 <span className="cost-breakdown__label">TOTAL</span>
@@ -585,8 +616,6 @@ export default function TokenCalculator() {
         </div>
       </div>
 
-      {/* Provider Cost Cards — below token visualizer */}
-      <ProviderCostCards inputTokens={tokenCount} outputTokens={outputTokensCount} />
 
       {/* Cost Projector */}
       <div className="container">

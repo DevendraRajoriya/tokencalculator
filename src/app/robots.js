@@ -8,6 +8,5 @@ export default function robots() {
       },
     ],
     sitemap: 'https://www.tokencalculator.app/sitemap.xml',
-    host: 'https://www.tokencalculator.app',
   }
 }
