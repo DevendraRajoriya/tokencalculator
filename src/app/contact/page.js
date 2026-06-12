@@ -7,28 +7,132 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sending, setSending] = useState(false);
+  const [picker, setPicker] = useState(null); // { emailSubject, emailBody, mailtoLink, gmailLink }
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       toast.error("Please fill in all required fields.");
       return;
     }
-    setSending(true);
-    // Simulate send — replace with Formspree / EmailJS in production
-    await new Promise((r) => setTimeout(r, 1200));
-    toast.success("Message sent! We'll reply within 48 hours.");
+
+    const subjectLabel = form.subject
+      ? {
+          bug: "Bug Report",
+          feature: "Feature Request",
+          pricing: "Pricing / Data Issue",
+          partnership: "Partnership / Collaboration",
+          privacy: "Privacy / Data Request",
+          other: "Other",
+        }[form.subject] ?? form.subject
+      : "General Inquiry";
+
+    const emailSubject = `[Contact] ${subjectLabel} – from ${form.name}`;
+    const emailBody =
+      `Name: ${form.name}\n` +
+      `Email: ${form.email}\n` +
+      `Topic: ${subjectLabel}\n\n` +
+      `Message:\n${form.message}`;
+
+    const mailtoLink = `mailto:hello@tokencalculator.app?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const gmailLink = `https://mail.google.com/mail/?view=cm&to=hello@tokencalculator.app&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    setPicker({ emailSubject, emailBody, mailtoLink, gmailLink });
+  };
+
+  const handlePickerChoice = (type) => {
+    if (type === "gmail") {
+      window.open(picker.gmailLink, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = picker.mailtoLink;
+    }
+    setPicker(null);
     setForm({ name: "", email: "", subject: "", message: "" });
-    setSending(false);
+    toast.success("Opening your email — just hit Send! 📨");
   };
 
   return (
     <>
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeInScale {
+          from { opacity: 0; transform: scale(0.92); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+
+        .email-picker-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.65);
+          backdrop-filter: blur(6px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          padding: 1rem;
+        }
+
+        .email-picker-modal {
+          background: var(--bg-secondary);
+          border: 1px solid var(--border-default);
+          border-radius: 18px;
+          padding: 2rem;
+          max-width: 420px;
+          width: 100%;
+          animation: fadeInScale 0.2s ease;
+        }
+
+        .email-picker-btn {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          width: 100%;
+          padding: 1rem 1.25rem;
+          border-radius: 12px;
+          border: 1px solid var(--border-default);
+          background: var(--bg-tertiary);
+          color: var(--text-primary);
+          font-size: 0.9375rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: border-color 0.15s, background 0.15s;
+          font-family: var(--font-sans);
+          text-align: left;
+        }
+
+        .email-picker-btn:hover {
+          border-color: var(--accent);
+          background: rgba(255,72,0,0.06);
+        }
+
+        .email-picker-btn .picker-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.25rem;
+          flex-shrink: 0;
+        }
+
+        .email-picker-cancel {
+          width: 100%;
+          padding: 0.6rem;
+          margin-top: 0.5rem;
+          background: none;
+          border: none;
+          color: var(--text-tertiary);
+          font-size: 0.875rem;
+          cursor: pointer;
+          font-family: var(--font-sans);
+          border-radius: 8px;
+          transition: color 0.15s;
+        }
+
+        .email-picker-cancel:hover { color: var(--text-secondary); }
 
         .contact-page-grid {
           display: grid;
@@ -256,29 +360,11 @@ export default function ContactPage() {
               />
             </FormField>
 
-            <button type="submit" disabled={sending} className="contact-submit-btn">
-              {sending ? (
-                <>
-                  <span
-                    style={{
-                      width: "16px", height: "16px",
-                      border: "2px solid rgba(255,255,255,0.4)",
-                      borderTopColor: "white",
-                      borderRadius: "50%",
-                      display: "inline-block",
-                      animation: "spin 0.8s linear infinite",
-                    }}
-                  />
-                  Sending…
-                </>
-              ) : (
-                <>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
-                  </svg>
-                  Send Message
-                </>
-              )}
+            <button type="submit" className="contact-submit-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Open Email Client to Send
             </button>
           </form>
         </div>
@@ -378,6 +464,52 @@ export default function ContactPage() {
       </section>
 
       <ToastContainer theme="dark" position="bottom-center" />
+
+      {/* ── Email Picker Modal ── */}
+      {picker && (
+        <div className="email-picker-overlay" onClick={() => setPicker(null)}>
+          <div className="email-picker-modal" onClick={(e) => e.stopPropagation()}>
+            <p style={{ fontWeight: 700, fontSize: "1.0625rem", color: "var(--text-primary)", marginBottom: "0.375rem" }}>
+              ✉️ Choose how to send
+            </p>
+            <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", marginBottom: "1.25rem", lineHeight: 1.4 }}>
+              Your message is ready. Pick your email client:
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {/* Gmail */}
+              <button className="email-picker-btn" onClick={() => handlePickerChoice("gmail")}>
+                <span className="picker-icon" style={{ background: "rgba(234,67,53,0.12)" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
+                  </svg>
+                </span>
+                <div>
+                  <div>Open Gmail</div>
+                  <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", fontWeight: 400 }}>Opens Gmail in a new tab</div>
+                </div>
+              </button>
+
+              {/* Default Mail App */}
+              <button className="email-picker-btn" onClick={() => handlePickerChoice("mailto")}>
+                <span className="picker-icon" style={{ background: "rgba(255,72,0,0.1)" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+                  </svg>
+                </span>
+                <div>
+                  <div>Default Mail App</div>
+                  <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", fontWeight: 400 }}>Outlook, Apple Mail, Thunderbird…</div>
+                </div>
+              </button>
+            </div>
+
+            <button className="email-picker-cancel" onClick={() => setPicker(null)}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
